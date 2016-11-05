@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - bin/rails
+    - bin/spring
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
