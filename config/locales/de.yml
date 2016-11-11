@@ -1,0 +1,25 @@
+en:
+  action_column: Aktionen
+  buttons:
+    create_model: "%{model} erstellen"
+    save: "Speichern"
+    edit: "Bearbeiten"
+    delete: "Löschen"
+  flashs:
+    created_model: "%{model} wurde erstellt."
+    updated_model: "%{model} wurde gespeichert."
+    destroyed_model: "%{model} wurde gelöscht."
+  titles:
+    brand: Energieverwaltung
+    new_model: "%{model} anlegen"
+    edit_model: "%{model} bearbeiten"
+  activerecord:
+    models:
+      inverter:
+        one: Wechselrichter
+        other: Wechselrichter
+    attributes:
+      inverter:
+        name: Name
+        capacity: Kapazität
+        serial: Seriennummer

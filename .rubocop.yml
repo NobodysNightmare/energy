@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - bin/rails
     - bin/spring
+    - db/schema.rb
 
 Style/Documentation:
   Enabled: false

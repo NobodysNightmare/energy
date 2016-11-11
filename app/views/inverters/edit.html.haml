@@ -1,0 +1,20 @@
+%h1
+  - if @inverter.new_record?
+    = I18n.t('titles.new_model', model: Inverter.model_name.human)
+  - else
+    = I18n.t('titles.edit_model', model: Inverter.model_name.human)
+
+= form_for @inverter do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.label :serial
+    = f.text_field :serial, class: 'form-control'
+
+  .form-group
+    = f.label :capacity
+    = f.text_field :capacity, class: 'form-control'
+
+  = f.submit I18n.t('buttons.save'), class: 'btn btn-success'
