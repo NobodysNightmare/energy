@@ -19,7 +19,7 @@ class InvertersController < ApplicationController
       flash[:success] = I18n.t('flashs.created_model',
                                model: Inverter.model_name.human)
     else
-      flash[:error] = inverter.errors.full_messages.join('<br>').html_safe
+      flash_errors(inverter.errors)
     end
     redirect_to action: :index
   end
@@ -30,8 +30,9 @@ class InvertersController < ApplicationController
       flash[:success] = I18n.t('flashs.updated_model',
                                model: Inverter.model_name.human)
     else
-      flash[:error] = inverter.errors.full_messages.join('<br>').html_safe
+      flash_errors(inverter.errors)
     end
+
     redirect_to action: :index
   end
 
