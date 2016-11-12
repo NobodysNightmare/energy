@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 20161111184305) do
 
   create_table "inverters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "serial"
-    t.integer  "capacity"
+    t.string   "name",       null: false
+    t.string   "serial",     null: false
+    t.integer  "capacity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["serial"], name: "index_inverters_on_serial", unique: true, using: :btree
