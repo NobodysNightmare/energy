@@ -17,6 +17,8 @@
       %td= inverter.serial
       %td= format_watt_peak(inverter.capacity)
       %td
+        %a.btn.btn-primary.btn-sm{href: inverter_readings_path(inverter)}
+          = I18n.t('buttons.inverter_readings')
         %a.btn.btn-default.btn-sm{href: edit_inverter_path(inverter)}
           = I18n.t('buttons.edit')
         = link_to I18n.t('buttons.delete'), inverter_path(inverter), method: :delete, class: 'btn btn-danger btn-sm'

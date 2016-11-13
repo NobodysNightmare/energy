@@ -5,6 +5,7 @@ en:
     save: "Save"
     edit: "Edit"
     delete: "Delete"
+    inverter_readings: "Readings"
   flashs:
     created_model: "%{model} was created."
     updated_model: "%{model} was updated."
@@ -13,6 +14,7 @@ en:
     brand: Energy Management
     new_model: "New %{model}"
     edit_model: "Edit %{model}"
+    readings_for_inverter: "Readings for %{inverter}"
   activerecord:
     models:
       inverter:

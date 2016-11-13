@@ -5,6 +5,7 @@ en:
     save: "Speichern"
     edit: "Bearbeiten"
     delete: "Löschen"
+    inverter_readings: "Zählerstände"
   flashs:
     created_model: "%{model} wurde erstellt."
     updated_model: "%{model} wurde gespeichert."
@@ -13,6 +14,7 @@ en:
     brand: Energieverwaltung
     new_model: "%{model} anlegen"
     edit_model: "%{model} bearbeiten"
+    readings_for_inverter: "Zählerstände für %{inverter}"
   activerecord:
     models:
       inverter:

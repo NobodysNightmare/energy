@@ -1,0 +1,11 @@
+%h1= I18n.t('titles.readings_for_inverter', inverter: inverter.name)
+
+%table.table
+  %thead
+    %tr
+      %th= InverterReading.human_attribute_name(:time)
+      %th= InverterReading.human_attribute_name(:value)
+  - @readings.each do |reading|
+    %tr
+      %td= I18n.l(reading.time, format: :short)
+      %td= format_watt_hours(reading.value)
