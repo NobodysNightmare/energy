@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113114236) do
+ActiveRecord::Schema.define(version: 20161127153950) do
 
   create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20161113114236) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["serial"], name: "index_inverters_on_serial", unique: true, using: :btree
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "user_id",                    null: false
+    t.string   "email",      default: "",    null: false
+    t.string   "name",       default: "",    null: false
+    t.boolean  "active",     default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_users_on_user_id", unique: true, using: :btree
   end
 
   add_foreign_key "inverter_readings", "inverters", on_delete: :cascade

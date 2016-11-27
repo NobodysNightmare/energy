@@ -10,4 +10,10 @@ Rails.application.routes.draw do
       resources :readings, only: [:create], controller: :inverter_readings
     end
   end
+
+  get '/login', to: 'sessions#new'
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:post, :get]
+  get '/logout', to: 'sessions#destroy'
+  get '/no_session', to: 'sessions#missing'
+  get '/no_privileges', to: 'sessions#insufficient'
 end

@@ -1,0 +1,8 @@
+%h1= I18n.t('views.sessions.missing.title')
+
+%p
+  = I18n.t('views.sessions.missing.explanation')
+
+%div
+  %a.btn.btn-primary{ href: login_path }
+    = I18n.t('views.sessions.missing.login_google')
