@@ -7,9 +7,7 @@ class ApiController < ActionController::Base
   def check_api_key
     api_key = request.env['HTTP_X_API_KEY']
 
-    unless api_key
-      return render_error(status: 401, message: 'Api-Key missing')
-    end
+    return render_error(status: 401, message: 'Api-Key missing') unless api_key
 
     return if ApiKey.valid?(api_key)
     render_error(status: 403, message: 'Bad API-Key')

@@ -12,8 +12,7 @@ module Api
         end
       end
 
-      render json: { message: 'Readings were created' },
-             status: :created
+      render json: { message: 'Readings were created' }, status: :created
     end
 
     private
