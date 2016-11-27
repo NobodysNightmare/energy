@@ -11,5 +11,7 @@ test:
   database: energy_test
 
 production:
-  <<: *default
+  adapter: mysql2
   database: energy
+  username: "<%= ENV["SQL_USER"] %>"
+  password: "<%= ENV["SQL_PASSWORD"] %>"
