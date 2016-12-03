@@ -1,11 +1,12 @@
 de:
   action_column: Aktionen
+  confirm_delete_named: "'%{name}' wirklich löschen?"
   buttons:
     create_model: "%{model} erstellen"
     save: "Speichern"
     edit: "Bearbeiten"
     delete: "Löschen"
-    inverter_readings: "Zählerstände"
+    inverter_readings: "Alle Zählerstände"
   flashs:
     created_model: "%{model} wurde erstellt."
     updated_model: "%{model} wurde gespeichert."
@@ -14,6 +15,7 @@ de:
     brand: Energieverwaltung
     new_model: "%{model} anlegen"
     edit_model: "%{model} bearbeiten"
+    destroy_model: "%{model} löschen"
     readings_for_inverter: "Zählerstände für %{inverter}"
   activerecord:
     models:
@@ -26,6 +28,10 @@ de:
         capacity: Kapazität
         serial: Seriennummer
   views:
+    inverters:
+      inverter:
+        current_power: "Aktuelle Leistung"
+        latest_reading: "Zählerstand"
     sessions:
       insufficient:
         explanation: "Du bist eingeloggt, hast jedoch keine Berechtigung auf diese Anwendung zuzugreifen."

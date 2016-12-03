@@ -1,11 +1,12 @@
 en:
   action_column: Actions
+  confirm_delete_named: "Really delete '%{name}'?"
   buttons:
     create_model: "Create %{model}"
     save: "Save"
     edit: "Edit"
     delete: "Delete"
-    inverter_readings: "Readings"
+    inverter_readings: "All Readings"
   flashs:
     created_model: "%{model} was created."
     updated_model: "%{model} was updated."
@@ -14,6 +15,7 @@ en:
     brand: Energy Management
     new_model: "New %{model}"
     edit_model: "Edit %{model}"
+    destroy_model: "Delete %{model}"
     readings_for_inverter: "Readings for %{inverter}"
   activerecord:
     models:
@@ -26,6 +28,10 @@ en:
         capacity: Capacity
         serial: Serial Number
   views:
+    inverters:
+      inverter:
+        current_power: "Current power"
+        latest_reading: "Latest reading"
     sessions:
       insufficient:
         explanation: "You are logged in, but lack the required permissions to use this application."

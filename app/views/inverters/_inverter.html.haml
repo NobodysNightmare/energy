@@ -1,0 +1,18 @@
+.panel.panel-default
+  .panel-heading
+    = inverter.name
+    .pull-right
+      %a{href: edit_inverter_path(inverter), title: I18n.t('buttons.edit')}
+        %i.fa.fa-pencil
+  .panel-body
+    %dl.dl-horizontal
+      %dt= t('.latest_reading')
+      %dd -
+      %dt= t('.current_power')
+      %dd -
+
+    .row
+      .col-md-12
+        .pull-right
+          %a.btn.btn-default.btn-sm{href: inverter_readings_path(inverter)}
+            = I18n.t('buttons.inverter_readings')
