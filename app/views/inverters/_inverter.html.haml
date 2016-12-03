@@ -7,9 +7,14 @@
   .panel-body
     %dl.dl-horizontal
       %dt= t('.latest_reading')
-      %dd -
+      %dd
+        - if inverter.latest_reading
+          = format_watt_hours(inverter.latest_reading.value)
+          = "(#{l(inverter.latest_reading.time)})"
+        - else
+          = '-'
       %dt= t('.current_power')
-      %dd -
+      %dd= format_watt(inverter.current_power)
 
     .row
       .col-md-12

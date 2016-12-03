@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class InvertersController < ApplicationController
   def index
-    @inverters = Inverter.all
+    @inverters = Inverter.all.map { |inv| InverterOverviewPresenter.new(inv) }
   end
 
   def new
