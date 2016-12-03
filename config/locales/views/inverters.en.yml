@@ -1,0 +1,5 @@
+en:
+  inverters:
+    inverter:
+      current_power: "Current power"
+      latest_reading: "Latest reading"

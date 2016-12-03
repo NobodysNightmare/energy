@@ -1,0 +1,8 @@
+en:
+  sessions:
+    insufficient:
+      explanation: "You are logged in, but lack the required permissions to use this application."
+    missing:
+      title: "Login required"
+      explanation: "To use this application, you need to log in."
+      login_google: "Login with Google"

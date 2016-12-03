@@ -1,0 +1,5 @@
+de:
+  inverters:
+    inverter:
+      current_power: "Aktuelle Leistung"
+      latest_reading: "Zählerstand"

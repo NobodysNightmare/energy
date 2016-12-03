@@ -1,0 +1,8 @@
+de:
+  sessions:
+    insufficient:
+      explanation: "Du bist eingeloggt, hast jedoch keine Berechtigung auf diese Anwendung zuzugreifen."
+    missing:
+      title: "Login erforderlich"
+      explanation: "Um diese Anwendung zu nutzen, musst du dich einloggen."
+      login_google: "Mit Google anmelden"
