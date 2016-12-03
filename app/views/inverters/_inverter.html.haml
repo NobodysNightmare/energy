@@ -10,7 +10,8 @@
       %dd
         - if inverter.latest_reading
           = format_watt_hours(inverter.latest_reading.value)
-          = "(#{l(inverter.latest_reading.time)})"
+          %abbr{title: l(inverter.latest_reading.time)}
+            = "(#{I18n.t('time_ago', time: time_ago_in_words(inverter.latest_reading.time))})"
         - else
           = '-'
       %dt= t('.current_power')

@@ -1,6 +1,7 @@
 en:
   action_column: Actions
   confirm_delete_named: "Really delete '%{name}'?"
+  time_ago: "%{time} ago"
   buttons:
     create_model: "Create %{model}"
     save: "Save"
