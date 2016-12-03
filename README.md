@@ -1,24 +1,20 @@
-# README
+# Energy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A small application to monitor the power generation and consumption of
+a (solar powered) household.
 
-Things you may want to cover:
+## Managing users
 
-* Ruby version
+The application is configured to authenticate via Google (using omniauth) and
+only grant access to a few selected users. Everyone that is allowed to access
+the application has full access.
 
-* System dependencies
+Check `rake -T`, all commands starting with `users:` are intended for user
+management.
 
-* Configuration
+## Managing API-Keys
 
-* Database creation
+The API-Endpoints require to pass an API-Key using the `X-Api-Key` HTTP-Header.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Check `rake -T` for additional details. All commands starting with `api_keys:`
+are intended for management of API-Keys.
