@@ -7,7 +7,7 @@ class InverterOverviewPresenter < SimpleDelegator
         time_passed = now.time - before.time
         generated = now.value - before.value
 
-        generated * (1.hour / time_passed)
+        (generated * (1.hour / time_passed)).round(0)
       else
         0
       end
