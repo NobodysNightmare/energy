@@ -10,8 +10,6 @@
       %dd
         - if inverter.latest_reading
           = format_watt_hours(inverter.latest_reading.value)
-          %abbr{title: l(inverter.latest_reading.time)}
-            = "(#{I18n.t('time_ago', time: time_ago_in_words(inverter.latest_reading.time))})"
         - else
           = '-'
       %dt= t('.daily_generation')
@@ -24,3 +22,7 @@
         .pull-right
           %a.btn.btn-default.btn-sm{href: inverter_readings_path(inverter)}
             = I18n.t('buttons.inverter_readings')
+  .panel-footer
+    = t('.refreshed_at', time: l(inverter.latest_reading.time, format: :time))
+    %abbr{title: l(inverter.latest_reading.time)}
+      = "(#{I18n.t('time_ago', time: time_ago_in_words(inverter.latest_reading.time))})"

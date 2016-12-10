@@ -4,3 +4,4 @@ en:
       current_power: "Current power"
       daily_generation: "Generated today"
       latest_reading: "Latest reading"
+      refreshed_at: "Updated at %{time}"

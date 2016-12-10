@@ -4,3 +4,4 @@ de:
       current_power: "Aktuelle Leistung"
       daily_generation: "Heute erzeugt"
       latest_reading: "Zählerstand"
+      refreshed_at: "Aktualisiert: %{time}"
