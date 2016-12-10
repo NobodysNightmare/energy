@@ -2,4 +2,5 @@ en:
   inverters:
     inverter:
       current_power: "Current power"
+      daily_generation: "Generated today"
       latest_reading: "Latest reading"
