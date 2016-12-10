@@ -9,3 +9,5 @@
     %tr
       %td= I18n.l(reading.time, format: :short)
       %td= format_watt_hours(reading.value)
+
+= paginate(@readings)
