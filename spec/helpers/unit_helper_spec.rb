@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe UnitHelper do
@@ -20,7 +21,7 @@ RSpec.describe UnitHelper do
     end
 
     context 'with a value above 10000 W' do
-      let(:value) { 12400 }
+      let(:value) { 12_400 }
 
       it 'renders the value as kilowatts' do
         expect(subject).to eql('12.4 kW')
@@ -45,7 +46,7 @@ RSpec.describe UnitHelper do
     end
 
     context 'with a value above 10000 Wh' do
-      let(:value) { 12400 }
+      let(:value) { 12_400 }
 
       it 'renders the value as kilowatt hours' do
         expect(subject).to eql('12.4 kWh')
@@ -70,7 +71,7 @@ RSpec.describe UnitHelper do
     end
 
     context 'with a value above 10000 Wp' do
-      let(:value) { 12400 }
+      let(:value) { 12_400 }
 
       it 'renders the value as kilowatt peak' do
         expect(subject).to eql('12.4 kWp')
