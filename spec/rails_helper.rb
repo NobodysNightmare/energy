@@ -10,7 +10,16 @@ require 'rspec/rails'
 
 ActiveRecord::Migration.maintain_test_schema!
 
+DatabaseCleaner.clean_with :truncation
+DatabaseCleaner.strategy = :transaction
+
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end

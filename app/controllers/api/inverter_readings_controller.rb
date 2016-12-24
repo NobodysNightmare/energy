@@ -3,16 +3,20 @@ module Api
   class InverterReadingsController < ApiController
     def create
       ActiveRecord::Base.transaction do
-        readings.each do |reading|
-          InverterReading.create!(
-            inverter: inverter,
-            time: Time.iso8601(reading[:time]),
-            value: reading[:value]
-          )
+        readings.each do |reading_hash|
+          reading = build_reading(reading_hash)
+
+          # We already have it, but a validation error
+          # is not neccessary (since everything is equal)
+          next if exact_duplicate?(reading)
+
+          reading.save!
         end
       end
 
       render json: { message: 'Readings were created' }, status: :created
+    rescue ActiveRecord::RecordInvalid => e
+      render json: { error: e.message }, status: :bad_request
     end
 
     private
@@ -23,6 +27,22 @@ module Api
 
     def readings
       params[:readings]
+    end
+
+    def build_reading(reading_hash)
+      InverterReading.new(
+        inverter: inverter,
+        time: Time.iso8601(reading_hash[:time]),
+        value: reading_hash[:value]
+      )
+    end
+
+    def exact_duplicate?(reading)
+      inverter.inverter_readings
+              .where(
+                time: reading.time,
+                value: reading.value
+              ).exists?
     end
   end
 end
