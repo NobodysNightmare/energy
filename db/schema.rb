@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127153950) do
+ActiveRecord::Schema.define(version: 20171221180820) do
 
   create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -21,15 +21,6 @@ ActiveRecord::Schema.define(version: 20161127153950) do
     t.index ["secret"], name: "index_api_keys_on_secret", unique: true, using: :btree
   end
 
-  create_table "inverter_readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "inverter_id", null: false
-    t.datetime "time",        null: false
-    t.integer  "value",       null: false
-    t.index ["inverter_id", "time"], name: "index_inverter_readings_on_inverter_id_and_time", unique: true, using: :btree
-    t.index ["inverter_id"], name: "index_inverter_readings_on_inverter_id", using: :btree
-    t.index ["time"], name: "index_inverter_readings_on_time", using: :btree
-  end
-
   create_table "inverters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.string   "serial",     null: false
@@ -37,6 +28,15 @@ ActiveRecord::Schema.define(version: 20161127153950) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["serial"], name: "index_inverters_on_serial", unique: true, using: :btree
+  end
+
+  create_table "readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "inverter_id", null: false
+    t.datetime "time",        null: false
+    t.integer  "value",       null: false
+    t.index ["inverter_id", "time"], name: "index_readings_on_inverter_id_and_time", unique: true, using: :btree
+    t.index ["inverter_id"], name: "index_readings_on_inverter_id", using: :btree
+    t.index ["time"], name: "index_readings_on_time", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -49,5 +49,5 @@ ActiveRecord::Schema.define(version: 20161127153950) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true, using: :btree
   end
 
-  add_foreign_key "inverter_readings", "inverters", on_delete: :cascade
+  add_foreign_key "readings", "inverters", on_delete: :cascade
 end

@@ -21,7 +21,7 @@
       .col-md-12
         .pull-right
           %a.btn.btn-default.btn-sm{href: inverter_readings_path(inverter)}
-            = I18n.t('buttons.inverter_readings')
+            = I18n.t('buttons.readings')
   .panel-footer
     = t('.refreshed_at', time: l(inverter.latest_reading.time, format: :time))
     %abbr{title: l(inverter.latest_reading.time)}

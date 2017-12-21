@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe Api::InverterReadingsController do
+RSpec.describe Api::ReadingsController do
   describe 'POST readings' do
     let(:inverter) { FactoryGirl.create(:inverter) }
     let(:serial) { inverter.serial }
@@ -22,27 +22,27 @@ RSpec.describe Api::InverterReadingsController do
       end
 
       it 'creates a reading' do
-        expect { subject }.to change { InverterReading.count }.from(0).to(1)
+        expect { subject }.to change { Reading.count }.from(0).to(1)
       end
 
       it 'creates a reading for the given inverter' do
         subject
-        expect(InverterReading.first.inverter).to eql inverter
+        expect(Reading.first.inverter).to eql inverter
       end
 
       it 'creates a reading with the given value' do
         subject
-        expect(InverterReading.first.value).to eql value
+        expect(Reading.first.value).to eql value
       end
 
       it 'creates a reading for the given time' do
         subject
-        expect(InverterReading.first.time).to eql time
+        expect(Reading.first.time).to eql time
       end
 
       context 'reading with same values for different inverter' do
         before do
-          InverterReading.create!(inverter: FactoryGirl.create(:inverter),
+          Reading.create!(inverter: FactoryGirl.create(:inverter),
                                   time: time,
                                   value: value)
         end
@@ -53,13 +53,13 @@ RSpec.describe Api::InverterReadingsController do
         end
 
         it 'creates a reading' do
-          expect { subject }.to change { InverterReading.count }.from(1).to(2)
+          expect { subject }.to change { Reading.count }.from(1).to(2)
         end
       end
 
       context 'reading with same time and different value' do
         before do
-          InverterReading.create!(inverter: inverter,
+          Reading.create!(inverter: inverter,
                                   time: time,
                                   value: value * 2)
         end
@@ -70,13 +70,13 @@ RSpec.describe Api::InverterReadingsController do
         end
 
         it 'creates a reading' do
-          expect { subject }.not_to change { InverterReading.count }
+          expect { subject }.not_to change { Reading.count }
         end
       end
 
       context 'reading with same time and same value' do
         before do
-          InverterReading.create!(inverter: inverter,
+          Reading.create!(inverter: inverter,
                                   time: time,
                                   value: value)
         end
@@ -87,7 +87,7 @@ RSpec.describe Api::InverterReadingsController do
         end
 
         it 'creates no reading' do
-          expect { subject }.not_to change { InverterReading.count }
+          expect { subject }.not_to change { Reading.count }
         end
       end
     end

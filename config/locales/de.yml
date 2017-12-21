@@ -7,7 +7,7 @@ de:
     save: "Speichern"
     edit: "Bearbeiten"
     delete: "Löschen"
-    inverter_readings: "Alle Zählerstände"
+    readings: "Alle Zählerstände"
   flashs:
     created_model: "%{model} wurde erstellt."
     updated_model: "%{model} wurde gespeichert."

@@ -16,9 +16,9 @@ class InverterOverviewPresenter < SimpleDelegator
 
   def daily_generation
     @daily_generation ||= begin
-      day_start = inverter_readings.where('time > ?', Date.today.to_time)
-                                   .order(:time)
-                                   .first
+      day_start = readings.where('time > ?', Date.today.to_time)
+                          .order(:time)
+                          .first
       if day_start
         latest_reading.value - day_start.value
       else
@@ -32,9 +32,9 @@ class InverterOverviewPresenter < SimpleDelegator
   end
 
   def latest_cycle
-    @latest_cycle ||= inverter_readings.order(time: :desc)
-                                       .limit(2)
-                                       .to_a
-                                       .reverse
+    @latest_cycle ||= readings.order(time: :desc)
+                              .limit(2)
+                              .to_a
+                              .reverse
   end
 end

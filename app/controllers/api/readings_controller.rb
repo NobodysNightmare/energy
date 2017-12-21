@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Api
-  class InverterReadingsController < ApiController
+  class ReadingsController < ApiController
     def create
       ActiveRecord::Base.transaction do
         readings.each do |reading_hash|
@@ -30,7 +30,7 @@ module Api
     end
 
     def build_reading(reading_hash)
-      InverterReading.new(
+      Reading.new(
         inverter: inverter,
         time: Time.iso8601(reading_hash[:time]),
         value: reading_hash[:value]
@@ -38,7 +38,7 @@ module Api
     end
 
     def exact_duplicate?(reading)
-      inverter.inverter_readings
+      inverter.readings
               .where(
                 time: reading.time,
                 value: reading.value

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class InverterReading < ApplicationRecord
+class Reading < ApplicationRecord
   belongs_to :inverter
 
   validates :inverter_id, presence: true

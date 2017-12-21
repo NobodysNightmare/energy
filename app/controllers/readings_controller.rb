@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-class InverterReadingsController < ApplicationController
+class ReadingsController < ApplicationController
   helper_method :inverter
 
   def index
-    @readings = inverter.inverter_readings
+    @readings = inverter.readings
                         .order(time: :desc)
                         .page(params[:page])
                         .per(100)

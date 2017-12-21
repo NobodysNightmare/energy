@@ -3,8 +3,8 @@
 %table.table
   %thead
     %tr
-      %th= InverterReading.human_attribute_name(:time)
-      %th= InverterReading.human_attribute_name(:value)
+      %th= Reading.human_attribute_name(:time)
+      %th= Reading.human_attribute_name(:value)
   - @readings.each do |reading|
     %tr
       %td= I18n.l(reading.time, format: :short)

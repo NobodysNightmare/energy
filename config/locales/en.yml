@@ -7,7 +7,7 @@ en:
     save: "Save"
     edit: "Edit"
     delete: "Delete"
-    inverter_readings: "All Readings"
+    readings: "All Readings"
   flashs:
     created_model: "%{model} was created."
     updated_model: "%{model} was updated."
