@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Inverter < ApplicationRecord
+class Meter < ApplicationRecord
   has_many :readings
 
   validates :name, presence: true, uniqueness: true

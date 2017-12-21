@@ -3,13 +3,13 @@ require 'rails_helper'
 
 RSpec.describe Api::ReadingsController do
   describe 'POST readings' do
-    let(:inverter) { FactoryGirl.create(:inverter) }
-    let(:serial) { inverter.serial }
+    let(:meter) { FactoryGirl.create(:meter) }
+    let(:serial) { meter.serial }
     let(:time) { Time.now.change(usec: 0) }
     let(:value) { 1337 }
     let(:readings) { [{ time: time.iso8601, value: value }] }
 
-    subject { process :create, method: :post, params: { inverter_serial: serial, readings: readings } }
+    subject { process :create, method: :post, params: { meter_serial: serial, readings: readings } }
 
     context 'with a valid API Key' do
       before do
@@ -25,9 +25,9 @@ RSpec.describe Api::ReadingsController do
         expect { subject }.to change { Reading.count }.from(0).to(1)
       end
 
-      it 'creates a reading for the given inverter' do
+      it 'creates a reading for the given meter' do
         subject
-        expect(Reading.first.inverter).to eql inverter
+        expect(Reading.first.meter).to eql meter
       end
 
       it 'creates a reading with the given value' do
@@ -40,11 +40,11 @@ RSpec.describe Api::ReadingsController do
         expect(Reading.first.time).to eql time
       end
 
-      context 'reading with same values for different inverter' do
+      context 'reading with same values for different meter' do
         before do
-          Reading.create!(inverter: FactoryGirl.create(:inverter),
-                                  time: time,
-                                  value: value)
+          Reading.create!(meter: FactoryGirl.create(:meter),
+                          time: time,
+                          value: value)
         end
 
         it 'responds with HTTP 201 Created' do
@@ -59,9 +59,9 @@ RSpec.describe Api::ReadingsController do
 
       context 'reading with same time and different value' do
         before do
-          Reading.create!(inverter: inverter,
-                                  time: time,
-                                  value: value * 2)
+          Reading.create!(meter: meter,
+                          time: time,
+                          value: value * 2)
         end
 
         it 'responds with HTTP 400 Bad Request' do
@@ -76,9 +76,9 @@ RSpec.describe Api::ReadingsController do
 
       context 'reading with same time and same value' do
         before do
-          Reading.create!(inverter: inverter,
-                                  time: time,
-                                  value: value)
+          Reading.create!(meter: meter,
+                          time: time,
+                          value: value)
         end
 
         it 'responds with HTTP 201 Created' do

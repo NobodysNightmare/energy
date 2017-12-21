@@ -21,8 +21,8 @@ module Api
 
     private
 
-    def inverter
-      @inverter ||= Inverter.find_by!(serial: params[:inverter_serial])
+    def meter
+      @meter ||= Meter.find_by!(serial: params[:meter_serial])
     end
 
     def readings
@@ -31,18 +31,18 @@ module Api
 
     def build_reading(reading_hash)
       Reading.new(
-        inverter: inverter,
+        meter: meter,
         time: Time.iso8601(reading_hash[:time]),
         value: reading_hash[:value]
       )
     end
 
     def exact_duplicate?(reading)
-      inverter.readings
-              .where(
-                time: reading.time,
-                value: reading.value
-              ).exists?
+      meter.readings
+           .where(
+             time: reading.time,
+             value: reading.value
+           ).exists?
     end
   end
 end

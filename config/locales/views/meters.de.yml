@@ -1,6 +1,6 @@
 de:
-  inverters:
-    inverter:
+  meters:
+    meter:
       current_power: "Aktuelle Leistung"
       daily_generation: "Heute erzeugt"
       latest_reading: "Zählerstand"

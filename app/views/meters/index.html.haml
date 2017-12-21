@@ -1,0 +1,11 @@
+%h1= Meter.model_name.human(count: 2)
+
+.row
+  - @meters.each do |meter|
+    .col-md-6
+      = render 'meter', meter: meter
+
+.row
+  .col-md-2
+    %a.btn.btn-primary{href: new_meter_path}
+      = I18n.t('buttons.create_model', model: Meter.model_name.human)

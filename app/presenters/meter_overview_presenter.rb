@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class InverterOverviewPresenter < SimpleDelegator
+class MeterOverviewPresenter < SimpleDelegator
   def current_power
     @current_power ||= begin
       before, now = latest_cycle

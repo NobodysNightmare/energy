@@ -17,14 +17,14 @@ en:
     new_model: "New %{model}"
     edit_model: "Edit %{model}"
     destroy_model: "Delete %{model}"
-    readings_for_inverter: "Readings for %{inverter}"
+    readings_for_meter: "Readings for %{meter}"
   activerecord:
     models:
-      inverter:
-        one: Inverter
-        other: Inverters
+      meter:
+        one: Meter
+        other: Meters
     attributes:
-      inverter:
+      meter:
         name: Name
         capacity: Capacity
         serial: Serial Number

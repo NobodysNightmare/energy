@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  root 'inverters#index'
-  resources :inverters, only: [:index, :new, :edit, :create, :update, :destroy] do
+  root 'meters#index'
+  resources :meters, only: [:index, :new, :edit, :create, :update, :destroy] do
     resources :readings, only: [:index], controller: :readings
   end
 
   namespace :api do
-    resources :inverters, param: :serial, only: [] do
+    resources :meters, param: :serial, only: [] do
       resources :readings, only: [:create], controller: :readings
     end
   end

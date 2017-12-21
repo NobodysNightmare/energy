@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221180820) do
+ActiveRecord::Schema.define(version: 20171221182808) do
 
   create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -21,21 +21,21 @@ ActiveRecord::Schema.define(version: 20171221180820) do
     t.index ["secret"], name: "index_api_keys_on_secret", unique: true, using: :btree
   end
 
-  create_table "inverters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "meters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.string   "serial",     null: false
     t.integer  "capacity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["serial"], name: "index_inverters_on_serial", unique: true, using: :btree
+    t.index ["serial"], name: "index_meters_on_serial", unique: true, using: :btree
   end
 
   create_table "readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "inverter_id", null: false
-    t.datetime "time",        null: false
-    t.integer  "value",       null: false
-    t.index ["inverter_id", "time"], name: "index_readings_on_inverter_id_and_time", unique: true, using: :btree
-    t.index ["inverter_id"], name: "index_readings_on_inverter_id", using: :btree
+    t.integer  "meter_id", null: false
+    t.datetime "time",     null: false
+    t.integer  "value",    null: false
+    t.index ["meter_id", "time"], name: "index_readings_on_meter_id_and_time", unique: true, using: :btree
+    t.index ["meter_id"], name: "index_readings_on_meter_id", using: :btree
     t.index ["time"], name: "index_readings_on_time", using: :btree
   end
 
@@ -49,5 +49,5 @@ ActiveRecord::Schema.define(version: 20171221180820) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true, using: :btree
   end
 
-  add_foreign_key "readings", "inverters", on_delete: :cascade
+  add_foreign_key "readings", "meters", on_delete: :cascade
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 class Reading < ApplicationRecord
-  belongs_to :inverter
+  belongs_to :meter
 
-  validates :inverter_id, presence: true
-  validates :time, presence: true, uniqueness: { scope: :inverter_id }
+  validates :meter_id, presence: true
+  validates :time, presence: true, uniqueness: { scope: :meter_id }
   validates :value, presence: true
 end

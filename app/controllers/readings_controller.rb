@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 class ReadingsController < ApplicationController
-  helper_method :inverter
+  helper_method :meter
 
   def index
-    @readings = inverter.readings
-                        .order(time: :desc)
-                        .page(params[:page])
-                        .per(100)
+    @readings = meter.readings
+                     .order(time: :desc)
+                     .page(params[:page])
+                     .per(100)
   end
 
   private
 
-  def inverter
-    @inverter ||= Inverter.find(params[:inverter_id])
+  def meter
+    @meter ||= Meter.find(params[:meter_id])
   end
 end
