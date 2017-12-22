@@ -1,0 +1,6 @@
+de:
+  sites:
+    site:
+      current_power: "Aktuelle Leistung"
+      daily_generation: "Heute erzeugt"
+      refreshed_at: "Aktualisiert: %{time}"

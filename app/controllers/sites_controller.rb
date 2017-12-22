@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class SitesController < ApplicationController
   def index
-    @sites = Site.all
+    @sites = Site.all.map { |s| SiteOverviewPresenter.new(s) }
   end
 
   def new

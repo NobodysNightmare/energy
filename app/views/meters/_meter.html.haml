@@ -23,6 +23,7 @@
           %a.btn.btn-default.btn-sm{href: meter_readings_path(meter)}
             = I18n.t('buttons.readings')
   .panel-footer
-    = t('.refreshed_at', time: l(meter.latest_reading.time, format: :time))
-    %abbr{title: l(meter.latest_reading.time)}
-      = "(#{I18n.t('time_ago', time: time_ago_in_words(meter.latest_reading.time))})"
+    - if meter.latest_reading
+      = t('.refreshed_at', time: l(meter.latest_reading.time, format: :time))
+      %abbr{title: l(meter.latest_reading.time)}
+        = "(#{I18n.t('time_ago', time: time_ago_in_words(meter.latest_reading.time))})"

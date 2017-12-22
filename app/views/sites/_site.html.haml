@@ -5,10 +5,19 @@
       %a{href: edit_site_path(site), title: I18n.t('buttons.edit')}
         %i.fa.fa-pencil
   .panel-body
-    TODO
+    %dl.dl-horizontal
+      %dt= t('.daily_generation')
+      %dd= format_watt_hours(site.daily_generation)
+      %dt= t('.current_power')
+      %dd= format_watt(site.current_power)
   .panel-footer
     .row
-      .col-md-12
+      .col-md-6
+        - if site.latest_reading
+          = t('.refreshed_at', time: l(site.latest_reading.time, format: :time))
+          %abbr{title: l(site.latest_reading.time)}
+            = "(#{I18n.t('time_ago', time: time_ago_in_words(site.latest_reading.time))})"
+      .col-md-6
         .pull-right
           %a.btn.btn-default.btn-sm{href: site_meters_path(site)}
             = I18n.t('buttons.meters')

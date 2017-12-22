@@ -16,4 +16,10 @@ class ApplicationController < ActionController::Base
 
     redirect_to no_privileges_path unless current_user.active?
   end
+
+  def flash_errors(errors)
+    flash[:error] = errors.full_messages
+                          .join('<br>')
+                          .html_safe
+  end
 end
