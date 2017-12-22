@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221182809) do
+ActiveRecord::Schema.define(version: 20171222182948) do
 
   create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20171221182809) do
   create_table "meters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.string   "serial",     null: false
-    t.integer  "capacity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "site_id"

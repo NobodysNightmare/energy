@@ -48,6 +48,6 @@ class MetersController < ApplicationController
   private
 
   def meter_params
-    params.require(:meter).permit(:name, :serial, :capacity, :site_id)
+    params.require(:meter).permit(:name, :serial, :site_id)
   end
 end

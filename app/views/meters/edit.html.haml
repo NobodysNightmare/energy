@@ -18,10 +18,6 @@
         = f.label :serial
         = f.text_field :serial, class: 'form-control'
 
-      .form-group
-        = f.label :capacity
-        = f.text_field :capacity, class: 'form-control'
-
       = f.submit I18n.t('buttons.save'), class: 'btn btn-success'
 
 - unless @meter.new_record?

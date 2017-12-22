@@ -30,5 +30,4 @@ en:
     attributes:
       meter:
         name: Name
-        capacity: Capacity
         serial: Serial Number
