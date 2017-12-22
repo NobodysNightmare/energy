@@ -1,0 +1,11 @@
+%h1= Site.model_name.human(count: 2)
+
+.row
+  - @sites.each do |site|
+    .col-md-6
+      = render 'site', site: site
+
+.row
+  .col-md-2
+    %a.btn.btn-primary{href: new_site_path}
+      = I18n.t('buttons.create_model', model: Site.model_name.human)

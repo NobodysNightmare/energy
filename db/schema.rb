@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221182808) do
+ActiveRecord::Schema.define(version: 20171221182809) do
 
   create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -27,7 +27,9 @@ ActiveRecord::Schema.define(version: 20171221182808) do
     t.integer  "capacity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "site_id"
     t.index ["serial"], name: "index_meters_on_serial", unique: true, using: :btree
+    t.index ["site_id"], name: "index_meters_on_site_id", using: :btree
   end
 
   create_table "readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -37,6 +39,12 @@ ActiveRecord::Schema.define(version: 20171221182808) do
     t.index ["meter_id", "time"], name: "index_readings_on_meter_id_and_time", unique: true, using: :btree
     t.index ["meter_id"], name: "index_readings_on_meter_id", using: :btree
     t.index ["time"], name: "index_readings_on_time", using: :btree
+  end
+
+  create_table "sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

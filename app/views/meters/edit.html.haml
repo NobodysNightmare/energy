@@ -7,6 +7,10 @@
   .panel-body
     = form_for @meter do |f|
       .form-group
+        = f.label :site_id
+        = f.select :site_id, site_options(params[:site_id]), {}, class: 'form-control'
+
+      .form-group
         = f.label :name
         = f.text_field :name, class: 'form-control'
 

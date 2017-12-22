@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 class MetersController < ApplicationController
   def index
-    @meters = Meter.all.map { |inv| MeterOverviewPresenter.new(inv) }
+    @meters = Meter.all
+    @meters = @meters.where(site_id: params[:site_id]) if params[:site_id]
+    @meters = @meters.map { |inv| MeterOverviewPresenter.new(inv) }
   end
 
   def new
@@ -46,6 +48,6 @@ class MetersController < ApplicationController
   private
 
   def meter_params
-    params.require(:meter).permit(:name, :serial, :capacity)
+    params.require(:meter).permit(:name, :serial, :capacity, :site_id)
   end
 end

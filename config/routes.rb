@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  root 'meters#index'
+  root 'sites#index'
+
   resources :meters, only: [:index, :new, :edit, :create, :update, :destroy] do
     resources :readings, only: [:index], controller: :readings
+  end
+
+  resources :sites, only: [:index, :new, :edit, :create, :update, :destroy] do
+    resources :meters, only: [:index, :new], controller: :meters
   end
 
   namespace :api do

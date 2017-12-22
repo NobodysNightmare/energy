@@ -7,6 +7,7 @@ de:
     save: "Speichern"
     edit: "Bearbeiten"
     delete: "Löschen"
+    meters: "Zähler"
     readings: "Alle Zählerstände"
   flashs:
     created_model: "%{model} wurde erstellt."
@@ -23,6 +24,9 @@ de:
       meter:
         one: Zähler
         other: Zähler
+      site:
+        one: Haushalt
+        other: Haushalte
     attributes:
       meter:
         name: Name

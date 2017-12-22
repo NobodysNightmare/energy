@@ -23,6 +23,8 @@
         #energy-navbar-collapse.collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li
+              %a{href: sites_path}= Site.model_name.human(count: 2)
+            %li
               %a{href: meters_path}= Meter.model_name.human(count: 2)
     .container-fluid
       - flash.each do |type, message|

@@ -7,5 +7,5 @@
 
 .row
   .col-md-2
-    %a.btn.btn-primary{href: new_meter_path}
+    = link_to({ controller: :meters, action: :new, site_id: params[:site_id] }, class: 'btn btn-primary') do
       = I18n.t('buttons.create_model', model: Meter.model_name.human)

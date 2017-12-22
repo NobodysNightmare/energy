@@ -7,6 +7,7 @@ en:
     save: "Save"
     edit: "Edit"
     delete: "Delete"
+    meters: "Meters"
     readings: "All Readings"
   flashs:
     created_model: "%{model} was created."
@@ -23,6 +24,9 @@ en:
       meter:
         one: Meter
         other: Meters
+      site:
+        one: Site
+        other: Sites
     attributes:
       meter:
         name: Name
