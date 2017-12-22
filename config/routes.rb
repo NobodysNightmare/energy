@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    # Keeping up backwards compatibility with older API
+    resources :inverters, param: :serial, only: [] do
+      resources :readings, only: [:create], controller: :readings
+    end
+
     resources :meters, param: :serial, only: [] do
       resources :readings, only: [:create], controller: :readings
     end

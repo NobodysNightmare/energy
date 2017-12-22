@@ -22,7 +22,11 @@ module Api
     private
 
     def meter
-      @meter ||= Meter.find_by!(serial: params[:meter_serial])
+      @meter ||= Meter.find_by!(serial: serial_param)
+    end
+
+    def serial_param
+      params[:meter_serial].presence || params[:inverter_serial]
     end
 
     def readings
