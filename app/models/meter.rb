@@ -4,6 +4,6 @@ class Meter < ApplicationRecord
 
   has_many :readings
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :site_id }
   validates :serial, presence: true, uniqueness: true
 end
