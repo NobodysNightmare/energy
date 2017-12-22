@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def flash_errors(errors)
-    flash[:error] = errors.full_messages
-                          .join('<br>')
-                          .html_safe
+    flash[:error] = helpers.safe_join(errors.full_messages, '<br>')
   end
 end
