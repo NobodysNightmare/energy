@@ -21,7 +21,7 @@ module UnitHelper
     if value >= 1000
       [(value / 1000.0).round(1), 'k']
     else
-      [value, '']
+      [value.round(1), '']
     end
   end
 end
