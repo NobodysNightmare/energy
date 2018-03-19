@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222182948) do
+ActiveRecord::Schema.define(version: 20180319171348) do
 
   create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -22,11 +22,12 @@ ActiveRecord::Schema.define(version: 20171222182948) do
   end
 
   create_table "meters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",       null: false
-    t.string   "serial",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                   null: false
+    t.string   "serial",                 null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "site_id"
+    t.integer  "meter_type", default: 0, null: false
     t.index ["serial"], name: "index_meters_on_serial", unique: true, using: :btree
     t.index ["site_id"], name: "index_meters_on_site_id", using: :btree
   end

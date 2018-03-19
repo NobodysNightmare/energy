@@ -12,8 +12,8 @@
           = format_watt_hours(meter.latest_reading.value)
         - else
           = '-'
-      %dt= t('.daily_generation')
-      %dd= format_watt_hours(meter.daily_generation)
+      %dt= t(".daily_energy.#{meter.meter_type}")
+      %dd= format_watt_hours(meter.daily_energy)
       %dt= t('.current_power')
       %dd= format_watt(meter.current_power)
 

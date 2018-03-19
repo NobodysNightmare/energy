@@ -22,8 +22,8 @@ class ReadingStatistics
     end
   end
 
-  def total_generation
-    @total_generation ||= begin
+  def total_energy
+    @total_energy ||= begin
       period_readings = readings.where('time > ? AND time < ?', @from, @to).order(:time)
       first_reading = period_readings.first
       last_reading = period_readings.last

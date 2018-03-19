@@ -4,8 +4,10 @@ class SiteOverviewPresenter < SimpleDelegator
     daily_statistics.map(&:current_power).sum
   end
 
-  def daily_generation
-    daily_statistics.map(&:total_generation).sum
+  def daily_energy
+    # TODO: generalize all statistics to consider
+    # different meter types
+    daily_statistics.map(&:total_energy).sum
   end
 
   def latest_reading

@@ -2,5 +2,5 @@ en:
   sites:
     site:
       current_power: "Current power"
-      daily_generation: "Generated today"
+      daily_energy: "Generated today"
       refreshed_at: "Updated at %{time}"

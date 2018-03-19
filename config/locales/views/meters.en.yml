@@ -2,6 +2,9 @@ en:
   meters:
     meter:
       current_power: "Current power"
-      daily_generation: "Generated today"
+      daily_energy:
+        generator: "Generated today"
+        grid_export: "Exported to grid today"
+        grid_import: "Imported from grid today"
       latest_reading: "Latest reading"
       refreshed_at: "Updated at %{time}"

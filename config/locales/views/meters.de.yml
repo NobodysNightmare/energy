@@ -2,6 +2,9 @@ de:
   meters:
     meter:
       current_power: "Aktuelle Leistung"
-      daily_generation: "Heute erzeugt"
+      daily_energy:
+        generator: "Heute erzeugt"
+        grid_export: "Heute ins Netz eingespeist"
+        grid_import: "Heute vom Netz bezogen"
       latest_reading: "Zählerstand"
       refreshed_at: "Aktualisiert: %{time}"

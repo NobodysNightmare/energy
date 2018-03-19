@@ -4,8 +4,8 @@ class MeterOverviewPresenter < SimpleDelegator
     daily_statistics.current_power
   end
 
-  def daily_generation
-    daily_statistics.total_generation
+  def daily_energy
+    daily_statistics.total_energy
   end
 
   def latest_reading
