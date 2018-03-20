@@ -1,0 +1,7 @@
+en:
+  enums:
+    meter:
+      meter_type:
+        generator: "Generator"
+        grid_export: "Grid Export"
+        grid_import: "Grid Import"

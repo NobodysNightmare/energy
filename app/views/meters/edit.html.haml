@@ -8,7 +8,11 @@
     = form_for @meter do |f|
       .form-group
         = f.label :site_id
-        = f.select :site_id, site_options(params[:site_id]), {}, class: 'form-control'
+        = f.select :site_id, site_options(@meter.site_id), {}, class: 'form-control'
+
+      .form-group
+        = f.label :meter_type
+        = f.select :meter_type, enum_options(Meter, :meter_type, @meter.meter_type), {}, class: 'form-control'
 
       .form-group
         = f.label :name

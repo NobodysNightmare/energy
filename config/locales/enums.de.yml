@@ -1,0 +1,7 @@
+de:
+  enums:
+    meter:
+      meter_type:
+        generator: "Erzeuger"
+        grid_export: "Netzeinspeisung"
+        grid_import: "Netzbezug"

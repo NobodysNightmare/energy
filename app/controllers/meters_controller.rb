@@ -7,7 +7,7 @@ class MetersController < ApplicationController
   end
 
   def new
-    @meter = Meter.new
+    @meter = Meter.new(site_id: params[:site_id])
     render :edit
   end
 
@@ -48,6 +48,6 @@ class MetersController < ApplicationController
   private
 
   def meter_params
-    params.require(:meter).permit(:name, :serial, :site_id)
+    params.require(:meter).permit(:name, :serial, :site_id, :meter_type)
   end
 end
