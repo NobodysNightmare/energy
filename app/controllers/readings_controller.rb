@@ -10,12 +10,7 @@ class ReadingsController < ApplicationController
   end
 
   def new
-    @reading = Reading.new(meter_id: params[:meter_id])
-    render :edit
-  end
-
-  def edit
-    @reading = Reading.find(params[:id])
+    @reading = Reading.new(meter_id: params[:meter_id], time: Time.current)
   end
 
   def create
