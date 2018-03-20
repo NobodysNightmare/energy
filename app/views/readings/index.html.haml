@@ -1,5 +1,11 @@
 %h1= I18n.t('titles.readings_for_meter', meter: meter.name)
 
+.row
+  .col-md-2
+    = link_to({ controller: :readings, action: :new, meter_id: params[:meter_id] }, class: 'btn btn-primary') do
+      = I18n.t('buttons.create_model', model: Reading.model_name.human)
+
+
 %table.table
   %thead
     %tr

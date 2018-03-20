@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root 'sites#index'
 
   resources :meters, only: [:index, :new, :edit, :create, :update, :destroy] do
-    resources :readings, only: [:index], controller: :readings
+    resources :readings, only: [:index, :new, :edit], controller: :readings
   end
+
+  resources :readings, only: [:edit, :create, :update, :destroy]
 
   resources :sites, only: [:index, :new, :edit, :create, :update, :destroy] do
     resources :meters, only: [:index, :new], controller: :meters

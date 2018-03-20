@@ -1,0 +1,32 @@
+.panel.panel-default
+  .panel-heading
+    - if @reading.new_record?
+      = I18n.t('titles.new_model', model: Reading.model_name.human)
+    - else
+      = I18n.t('titles.edit_model', model: Reading.model_name.human)
+  .panel-body
+    = form_for @reading do |f|
+      = f.hidden_field :meter_id
+
+      .form-group
+        = f.label :time
+        = f.text_field :time, class: 'form-control', type: 'datetime-local'
+
+      .form-group
+        = f.label :value
+        .input-group
+          = f.text_field :value, class: 'form-control', type: 'number'
+          .input-group-addon
+            Wh
+
+      = f.submit I18n.t('buttons.save'), class: 'btn btn-success'
+
+- unless @reading.new_record?
+  .panel.panel-danger
+    .panel-heading
+      = I18n.t('titles.destroy_model', model: Reading.model_name.human)
+    .panel-body
+      = link_to I18n.t('buttons.delete'), reading_path(@reading),
+                method: :delete,
+                class: 'btn btn-danger btn-sm',
+                data: { confirm: I18n.t('confirm_delete_model', model: Reading.model_name.human) }
