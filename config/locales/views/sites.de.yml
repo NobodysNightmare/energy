@@ -1,6 +1,12 @@
 de:
   sites:
     site:
-      current_power: "Aktuelle Leistung"
-      daily_energy: "Heute erzeugt"
+      current_generator_power: "Erzeugung"
+      current_grid_export_power: "Netzeinspeisung"
+      current_grid_import_power: "Netzbezug"
+      current_power_draw: "Aktueller Verbrauch"
+      daily_energy_draw: "Heute verbraucht"
+      daily_energy_export: "Eingespeist"
+      daily_energy_generation: "Erzeugt"
+      daily_energy_import: "Bezogen"
       refreshed_at: "Aktualisiert: %{time}"

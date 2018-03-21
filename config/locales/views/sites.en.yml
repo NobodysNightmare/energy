@@ -1,6 +1,12 @@
 en:
   sites:
     site:
-      current_power: "Current power"
-      daily_energy: "Generated today"
+      current_generator_power: "Generating"
+      current_grid_export_power: "Exporting"
+      current_grid_import_power: "Importing"
+      current_power_draw: "Current power use"
+      daily_energy_draw: "Daily energy use"
+      daily_energy_export: "Exported"
+      daily_energy_generation: "Generated"
+      daily_energy_import: "Imported"
       refreshed_at: "Updated at %{time}"
