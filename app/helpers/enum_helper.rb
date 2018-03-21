@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EnumHelper
   def enum_options(model, enum_field, selected)
     enum = model.public_send(enum_field.to_s.pluralize)
