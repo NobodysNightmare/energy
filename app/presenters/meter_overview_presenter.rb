@@ -18,7 +18,7 @@ class MeterOverviewPresenter < SimpleDelegator
     @daily_statistics ||= ReadingStatistics.new(
       readings,
       from: Time.current.beginning_of_day,
-      to: Time.current.end_of_day
+      to: Time.current
     )
   end
 end

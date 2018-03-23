@@ -24,12 +24,12 @@ class ReadingStatistics
 
   def total_energy
     @total_energy ||= begin
-      period_readings = readings.where('time > ? AND time < ?', @from, @to).order(:time)
-      first_reading = period_readings.first
-      last_reading = period_readings.last
+      interpolator = ReadingInterpolator.new(readings, from: @from, to: @to)
+      first_value = interpolator.value_at(@from)
+      last_value = interpolator.value_at(@to)
 
-      if first_reading && last_reading
-        last_reading.value - first_reading.value
+      if first_value && last_value
+        last_value - first_value
       else
         0
       end
