@@ -42,6 +42,8 @@ class ReadingInterpolator
   end
 
   def extrapolate(time)
+    return first_reading.value if readings.size == 1
+
     if time < first_reading.time
       extrapolate_before(time)
     elsif time > last_reading.time

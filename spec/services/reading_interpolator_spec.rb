@@ -60,10 +60,10 @@ RSpec.describe ReadingInterpolator do
     let(:time) { nil }
     let(:reading_a) { FactoryGirl.build(:reading, time: Time.iso8601('2018-01-01T10:00:00Z'), value: 1000) }
     let(:reading_b) { FactoryGirl.build(:reading, time: Time.iso8601('2018-01-01T12:00:00Z'), value: 2000) }
+    let(:all_readings) { [reading_a, reading_b] }
 
     before do
-      reading_a.save!
-      reading_b.save!
+      all_readings.each(&:save!)
     end
 
     context 'when interpolating in the center' do
@@ -103,6 +103,35 @@ RSpec.describe ReadingInterpolator do
 
       it 'extrapolates a later value' do
         is_expected.to eq 2500
+      end
+    end
+
+    context 'when there is only one reading' do
+      let(:all_readings) { [reading_a] }
+
+      context 'and the time is on that reading' do
+        let(:time) { reading_a.time }
+
+        it 'returns that reading\'s value' do
+          is_expected.to eq reading_a.value
+        end
+      end
+
+      context 'and the time is different' do
+        let(:time) { Time.iso8601('2018-01-01T13:00:00Z') }
+
+        it 'returns the only known value' do
+          is_expected.to eq reading_a.value
+        end
+      end
+    end
+
+    context 'when there are no readings' do
+      let(:all_readings) { [] }
+      let(:time) { Time.iso8601('2018-01-01T13:00:00Z') }
+
+      it 'returns nil' do
+        is_expected.to be_nil
       end
     end
   end
