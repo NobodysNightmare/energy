@@ -6,3 +6,8 @@ en:
       imported: Imported
       period: Period
       used: Used
+      time_chooser:
+        end: End
+        title: Choose timeframe
+        start: Start
+        submit_button: Filter

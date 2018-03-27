@@ -6,3 +6,8 @@ de:
       imported: Bezogen
       period: Zeitraum
       used: Verbraucht
+      time_chooser:
+        end: Ende
+        title: Zeitraum bestimmen
+        start: Start
+        submit_button: Filtern

@@ -1,18 +1,34 @@
 %h1= @site.name
 
-.row
-  %table.table
-    %thead
-      %th= t('.period')
-      %th= t('.generated')
-      %th= t('.imported')
-      %th= t('.exported')
-      %th= t('.used')
-    %tbody
-      - @timeline.rows.each do |row|
-        %tr
-          %td= row[:formatted_period]
-          %td= format_watt_hours row[:generated]
-          %td= format_watt_hours row[:imported]
-          %td= format_watt_hours row[:exported]
-          %td= format_watt_hours((row[:generated] + row[:imported]) - row[:exported])
+%table.table
+  %thead
+    %th= t('.period')
+    %th= t('.generated')
+    %th= t('.imported')
+    %th= t('.exported')
+    %th= t('.used')
+  %tbody
+    - @timeline.rows.each do |row|
+      %tr
+        %td= row[:formatted_period]
+        %td= format_watt_hours row[:generated]
+        %td= format_watt_hours row[:imported]
+        %td= format_watt_hours row[:exported]
+        %td= format_watt_hours((row[:generated] + row[:imported]) - row[:exported])
+
+.panel.panel-default
+  .panel-heading
+    = t('.time_chooser.title')
+  .panel-body
+    %form
+      .form-group
+        %label{ for: 'start' }
+          = t('.time_chooser.start')
+        %input.form-control#start{ name: 'start', type: 'date', value: start_date.iso8601 }
+      .form-group
+        %label{ for: 'end' }
+          = t('.time_chooser.end')
+        %input.form-control#end{ name: 'end', type: 'date', value: end_date.iso8601 }
+
+      %button.btn.btn-primary
+        = t('.time_chooser.submit_button')

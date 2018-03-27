@@ -18,8 +18,8 @@ class SiteTimeline
 
   def initialize(site, from, to)
     @site = site
-    @from = from # TODO: snap to period start
-    @to = to
+    @from = from.to_time
+    @to = to.to_time
   end
 
   def period
