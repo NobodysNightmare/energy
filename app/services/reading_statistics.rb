@@ -9,6 +9,9 @@ class ReadingStatistics
   end
 
   def current_power
+    # TODO: should be consistent with energy interpolation
+    #  * interpolate over last hour? (that would also incur averaging)
+    #  * only consider records from today (would only be consistent because of implementation details)
     @current_power ||= begin
       before, now = latest_cycle
       if now && before
@@ -23,16 +26,17 @@ class ReadingStatistics
   end
 
   def total_energy
-    @total_energy ||= begin
-      interpolator = ReadingInterpolator.new(readings, from: @from, to: @to)
-      first_value = interpolator.value_at(@from)
-      last_value = interpolator.value_at(@to)
+    energy_between(@from, @to)
+  end
 
-      if first_value && last_value
-        last_value - first_value
-      else
-        0
-      end
+  def energy_between(from, to)
+    first_value = interpolator.value_at(from)
+    last_value = interpolator.value_at(to)
+
+    if first_value && last_value
+      last_value - first_value
+    else
+      0
     end
   end
 
@@ -46,5 +50,9 @@ class ReadingStatistics
     @latest_cycle ||= readings.order(time: :desc)
                               .limit(2)
                               .reverse
+  end
+
+  def interpolator
+    @interpolator ||= ReadingInterpolator.new(readings, from: @from, to: @to)
   end
 end

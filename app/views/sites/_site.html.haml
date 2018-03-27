@@ -47,5 +47,7 @@
             = "(#{I18n.t('time_ago', time: time_ago_in_words(site.latest_reading.time))})"
       .col-md-6
         .pull-right
+          %a.btn.btn-primary.btn-sm{href: timeline_site_path(site)}
+            = t('.timeline_button')
           %a.btn.btn-default.btn-sm{href: site_meters_path(site)}
             = I18n.t('buttons.meters')

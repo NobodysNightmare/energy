@@ -1,0 +1,8 @@
+de:
+  sites_timelines:
+    index:
+      exported: Eingespeist
+      generated: Erzeugt
+      imported: Bezogen
+      period: Zeitraum
+      used: Verbraucht

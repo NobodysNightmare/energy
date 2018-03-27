@@ -12,6 +12,10 @@ class CollectiveReadingStatistics
     @statistics.map(&:total_energy).sum
   end
 
+  def energy_between(from, to)
+    @statistics.map { |s| s.energy_between(from, to) }.sum
+  end
+
   def latest_reading
     @statistics.map(&:latest_reading).max
   end

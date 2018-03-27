@@ -10,3 +10,4 @@ en:
       daily_energy_generation: "Generated"
       daily_energy_import: "Imported"
       refreshed_at: "Updated at %{time}"
+      timeline_button: "Timeline"

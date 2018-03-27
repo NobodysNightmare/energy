@@ -1,0 +1,18 @@
+%h1= @site.name
+
+.row
+  %table.table
+    %thead
+      %th= t('.period')
+      %th= t('.generated')
+      %th= t('.imported')
+      %th= t('.exported')
+      %th= t('.used')
+    %tbody
+      - @timeline.rows.each do |row|
+        %tr
+          %td= row[:formatted_period]
+          %td= format_watt_hours row[:generated]
+          %td= format_watt_hours row[:imported]
+          %td= format_watt_hours row[:exported]
+          %td= format_watt_hours((row[:generated] + row[:imported]) - row[:exported])

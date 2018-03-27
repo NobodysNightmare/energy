@@ -1,0 +1,8 @@
+en:
+  sites_timelines:
+    index:
+      exported: Exported
+      generated: Generated
+      imported: Imported
+      period: Period
+      used: Used

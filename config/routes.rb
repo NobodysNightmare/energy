@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   resources :sites, only: [:index, :new, :edit, :create, :update, :destroy] do
     resources :meters, only: [:index, :new], controller: :meters
+
+    member do
+      get 'timeline' => 'sites_timelines#index'
+    end
   end
 
   namespace :api do
