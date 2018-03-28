@@ -33,7 +33,7 @@ class SiteOverviewPresenter < SimpleDelegator
   end
 
   def latest_reading
-    [generators, exports, imports].map(&:latest_reading).compact.max
+    [generators, exports, imports].map(&:latest_reading).compact.max_by(&:time)
   end
 
   private

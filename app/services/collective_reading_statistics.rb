@@ -17,7 +17,7 @@ class CollectiveReadingStatistics
   end
 
   def latest_reading
-    @statistics.map(&:latest_reading).max
+    @statistics.map(&:latest_reading).max_by(&:time)
   end
 
   private
