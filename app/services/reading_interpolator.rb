@@ -42,23 +42,13 @@ class ReadingInterpolator
   end
 
   def extrapolate(time)
-    return first_reading.value if readings.size == 1
-
     if time < first_reading.time
-      extrapolate_before(time)
+      first_reading.value
     elsif time > last_reading.time
-      extrapolate_after(time)
+      last_reading.value
     else
       raise ArgumentError, 'Time is not outside of readings range.'
     end
-  end
-
-  def extrapolate_before(time)
-    estimate(first_reading.value, -1 * rate(readings[0], readings[1]), first_reading.time - time)
-  end
-
-  def extrapolate_after(time)
-    estimate(last_reading.value, rate(readings[-2], readings[-1]), time - last_reading.time)
   end
 
   def estimate(base_value, rate, progress)

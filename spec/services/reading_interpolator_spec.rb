@@ -93,16 +93,16 @@ RSpec.describe ReadingInterpolator do
     context 'when interpolating before the start' do
       let(:time) { Time.iso8601('2018-01-01T09:00:00Z') }
 
-      it 'extrapolates an earlier value' do
-        is_expected.to eq 500
+      it 'returns the start value' do
+        is_expected.to eq reading_a.value
       end
     end
 
     context 'when interpolating after the end' do
       let(:time) { Time.iso8601('2018-01-01T13:00:00Z') }
 
-      it 'extrapolates a later value' do
-        is_expected.to eq 2500
+      it 'returns the end value' do
+        is_expected.to eq reading_b.value
       end
     end
 
