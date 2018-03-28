@@ -34,9 +34,8 @@ class ReadingInterpolator
   private
 
   def interpolate(time)
-    # TODO: more efficient search using binary search
-    before = readings.reverse.find { |r| r.time <= time }
-    after = readings.find { |r| r.time >= time }
+    finder = NeighbourFinder.new(readings)
+    before, after = finder.readings_around(time)
 
     estimate(before.value, rate(before, after), time - before.time)
   end
