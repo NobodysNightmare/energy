@@ -9,12 +9,9 @@ class ReadingStatistics
   end
 
   def current_power
-    # TODO: should be consistent with energy interpolation
-    #  * interpolate over last hour? (that would also incur averaging)
-    #  * only consider records from today (would only be consistent because of implementation details)
     @current_power ||= begin
       before, now = latest_cycle
-      if now && before
+      if now && before && now.time > @from
         time_passed = now.time - before.time
         generated = now.value - before.value
 
