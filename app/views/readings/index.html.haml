@@ -1,3 +1,8 @@
+- content_for :breadcrumb do
+  %li= link_to Meter.model_name.human(count: 2), meters_path
+  %li= @meter.name
+  %li= Reading.model_name.human(count: 2)
+
 %h1= I18n.t('titles.readings_for_meter', meter: meter.name)
 
 .row

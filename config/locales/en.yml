@@ -3,6 +3,9 @@ en:
   confirm_delete_model: "Really delete %{model}?"
   confirm_delete_named: "Really delete '%{name}'?"
   time_ago: "%{time} ago"
+  actions:
+    edit: Edit
+    new: New
   buttons:
     create_model: "Create %{model}"
     save: "Save"

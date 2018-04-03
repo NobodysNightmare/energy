@@ -1,3 +1,13 @@
+- content_for :breadcrumb do
+  %li= link_to Meter.model_name.human(count: 2), meters_path
+  %li= @reading.meter.name
+  %li= link_to Reading.model_name.human(count: 2), meter_readings_path(@reading.meter_id)
+  %li
+    - if @reading.new_record?
+      = I18n.t('actions.new')
+    - else
+      = I18n.t('actions.edit')
+
 .panel.panel-default
   .panel-heading
     - if @reading.new_record?

@@ -34,4 +34,7 @@
         - else
           .alert.alert-danger
             = message
+      - if content_for? :breadcrumb
+        %ol.breadcrumb
+          = yield :breadcrumb
       = yield

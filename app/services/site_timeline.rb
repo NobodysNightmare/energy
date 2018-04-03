@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class SiteTimeline
-  # TODO: pretty formats
   PERIOD_FORMATS = {
     day: :date,
     week: :week,

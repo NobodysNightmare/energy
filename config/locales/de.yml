@@ -3,6 +3,9 @@ de:
   confirm_delete_model: "%{model} wirklich löschen?"
   confirm_delete_named: "'%{name}' wirklich löschen?"
   time_ago: "vor %{time}"
+  actions:
+    edit: Bearbeiten
+    new: Neu
   buttons:
     create_model: "%{model} erstellen"
     save: "Speichern"
