@@ -15,7 +15,7 @@
     - else
       = I18n.t('titles.edit_model', model: Reading.model_name.human)
   .panel-body
-    = form_for @reading do |f|
+    = form_for [@reading.meter, @reading] do |f|
       = f.hidden_field :meter_id
 
       .form-group

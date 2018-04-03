@@ -21,7 +21,7 @@ class ReadingsController < ApplicationController
     else
       flash_errors(reading.errors)
     end
-    redirect_to meters_path
+    redirect_to action: :index
   end
 
   def update
@@ -40,7 +40,7 @@ class ReadingsController < ApplicationController
     Reading.find(params[:id]).destroy
     flash[:success] = I18n.t('flashs.destroyed_model',
                              model: Reading.model_name.human)
-    redirect_to '/'
+    redirect_to action: :index
   end
 
   private
