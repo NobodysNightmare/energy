@@ -25,6 +25,9 @@ de:
       meter:
         one: Zähler
         other: Zähler
+      reading:
+        one: Zählerstand
+        other: Zählerstände
       site:
         one: Haushalt
         other: Haushalte

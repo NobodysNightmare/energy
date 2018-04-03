@@ -25,6 +25,9 @@ en:
       meter:
         one: Meter
         other: Meters
+      reading:
+        one: Reading
+        other: Readings
       site:
         one: Site
         other: Sites
