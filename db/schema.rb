@@ -12,49 +12,49 @@
 
 ActiveRecord::Schema.define(version: 20180319171348) do
 
-  create_table "api_keys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",       null: false
-    t.string   "secret",     null: false
+  create_table "api_keys", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "secret", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_api_keys_on_name", unique: true, using: :btree
-    t.index ["secret"], name: "index_api_keys_on_secret", unique: true, using: :btree
+    t.index ["name"], name: "index_api_keys_on_name", unique: true
+    t.index ["secret"], name: "index_api_keys_on_secret", unique: true
   end
 
-  create_table "meters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                   null: false
-    t.string   "serial",                 null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "site_id"
-    t.integer  "meter_type", default: 0, null: false
-    t.index ["serial"], name: "index_meters_on_serial", unique: true, using: :btree
-    t.index ["site_id"], name: "index_meters_on_site_id", using: :btree
+  create_table "meters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "serial", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "site_id"
+    t.integer "meter_type", default: 0, null: false
+    t.index ["serial"], name: "index_meters_on_serial", unique: true
+    t.index ["site_id"], name: "index_meters_on_site_id"
   end
 
-  create_table "readings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "meter_id", null: false
-    t.datetime "time",     null: false
-    t.integer  "value",    null: false
-    t.index ["meter_id", "time"], name: "index_readings_on_meter_id_and_time", unique: true, using: :btree
-    t.index ["meter_id"], name: "index_readings_on_meter_id", using: :btree
-    t.index ["time"], name: "index_readings_on_time", using: :btree
+  create_table "readings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "meter_id", null: false
+    t.datetime "time", null: false
+    t.integer "value", null: false
+    t.index ["meter_id", "time"], name: "index_readings_on_meter_id_and_time", unique: true
+    t.index ["meter_id"], name: "index_readings_on_meter_id"
+    t.index ["time"], name: "index_readings_on_time"
   end
 
-  create_table "sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",       null: false
+  create_table "sites", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "user_id",    limit: 100,                 null: false
-    t.string   "email",                  default: "",    null: false
-    t.string   "name",                   default: "",    null: false
-    t.boolean  "active",                 default: false, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.index ["user_id"], name: "index_users_on_user_id", unique: true, using: :btree
+  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "user_id", limit: 100, null: false
+    t.string "email", default: "", null: false
+    t.string "name", default: "", null: false
+    t.boolean "active", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
   add_foreign_key "readings", "meters", on_delete: :cascade
