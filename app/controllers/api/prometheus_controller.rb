@@ -3,7 +3,8 @@
 module Api
   class PrometheusController < ApiController
     def index
-      readings = Reading.includes(meter: :site).order(time: :desc).limit(limit)
+      meters = Meter.includes(:site).all
+      readings = meters.map { |m| m.readings.order(:time).last }
       render plain: PrometheusFormatter.format(readings)
     end
 
