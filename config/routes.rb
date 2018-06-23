@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :meters, param: :serial, only: [] do
       resources :readings, only: [:create], controller: :readings
     end
+
+    get 'prometheus', to: 'prometheus#index'
   end
 
   get '/login', to: 'sessions#new'
