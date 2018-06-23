@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe Api::ReadingsController do
   describe 'POST readings' do
-    let(:meter) { FactoryGirl.create(:meter) }
+    let(:meter) { FactoryBot.create(:meter) }
     let(:serial) { meter.serial }
     let(:time) { Time.now.change(usec: 0) }
     let(:value) { 1337 }
@@ -42,7 +42,7 @@ RSpec.describe Api::ReadingsController do
 
       context 'reading with same values for different meter' do
         before do
-          Reading.create!(meter: FactoryGirl.create(:meter),
+          Reading.create!(meter: FactoryBot.create(:meter),
                           time: time,
                           value: value)
         end

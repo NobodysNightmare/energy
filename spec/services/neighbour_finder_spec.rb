@@ -5,11 +5,11 @@ require 'rails_helper'
 RSpec.describe NeighbourFinder do
   subject { described_class.new(all_readings).readings_around(time) }
 
-  let(:reading_1) { FactoryGirl.build(:reading, time: Time.iso8601('2017-02-01T08:00:00Z')) }
-  let(:reading_2) { FactoryGirl.build(:reading, time: Time.iso8601('2017-02-01T09:00:00Z')) }
-  let(:reading_3) { FactoryGirl.build(:reading, time: Time.iso8601('2018-02-01T10:00:00Z')) }
-  let(:reading_4) { FactoryGirl.build(:reading, time: Time.iso8601('2018-02-01T11:00:00Z')) }
-  let(:reading_5) { FactoryGirl.build(:reading, time: Time.iso8601('2018-02-01T12:00:00Z')) }
+  let(:reading_1) { FactoryBot.build(:reading, time: Time.iso8601('2017-02-01T08:00:00Z')) }
+  let(:reading_2) { FactoryBot.build(:reading, time: Time.iso8601('2017-02-01T09:00:00Z')) }
+  let(:reading_3) { FactoryBot.build(:reading, time: Time.iso8601('2018-02-01T10:00:00Z')) }
+  let(:reading_4) { FactoryBot.build(:reading, time: Time.iso8601('2018-02-01T11:00:00Z')) }
+  let(:reading_5) { FactoryBot.build(:reading, time: Time.iso8601('2018-02-01T12:00:00Z')) }
   let(:all_readings) do
     [reading_1, reading_2, reading_3, reading_4, reading_5]
   end

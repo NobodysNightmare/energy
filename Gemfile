@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.1.0'
 gem 'mysql2'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -26,7 +26,7 @@ gem 'sentry-raven'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rubocop', require: false
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'database_cleaner'
 end

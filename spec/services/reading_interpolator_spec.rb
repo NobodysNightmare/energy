@@ -14,11 +14,11 @@ RSpec.describe ReadingInterpolator do
   describe '#readings' do
     subject(:readings) { interpolator.readings }
 
-    let(:reading_before) { FactoryGirl.build(:reading, time: Time.iso8601('2017-12-01T10:00:00Z')) }
-    let(:additional_reading_before) { FactoryGirl.build(:reading, time: Time.iso8601('2017-12-01T09:00:00Z')) }
-    let(:reading_after) { FactoryGirl.build(:reading, time: Time.iso8601('2018-02-01T10:00:00Z')) }
-    let(:additional_reading_after) { FactoryGirl.build(:reading, time: Time.iso8601('2018-02-01T11:00:00Z')) }
-    let(:reading_inside) { FactoryGirl.build(:reading, time: Time.iso8601('2018-01-01T10:00:00Z')) }
+    let(:reading_before) { FactoryBot.build(:reading, time: Time.iso8601('2017-12-01T10:00:00Z')) }
+    let(:additional_reading_before) { FactoryBot.build(:reading, time: Time.iso8601('2017-12-01T09:00:00Z')) }
+    let(:reading_after) { FactoryBot.build(:reading, time: Time.iso8601('2018-02-01T10:00:00Z')) }
+    let(:additional_reading_after) { FactoryBot.build(:reading, time: Time.iso8601('2018-02-01T11:00:00Z')) }
+    let(:reading_inside) { FactoryBot.build(:reading, time: Time.iso8601('2018-01-01T10:00:00Z')) }
     let(:all_readings) do
       [
         reading_before,
@@ -58,8 +58,8 @@ RSpec.describe ReadingInterpolator do
     subject(:result) { interpolator.value_at(time) }
 
     let(:time) { nil }
-    let(:reading_a) { FactoryGirl.build(:reading, time: Time.iso8601('2018-01-01T10:00:00Z'), value: 1000) }
-    let(:reading_b) { FactoryGirl.build(:reading, time: Time.iso8601('2018-01-01T12:00:00Z'), value: 2000) }
+    let(:reading_a) { FactoryBot.build(:reading, time: Time.iso8601('2018-01-01T10:00:00Z'), value: 1000) }
+    let(:reading_b) { FactoryBot.build(:reading, time: Time.iso8601('2018-01-01T12:00:00Z'), value: 2000) }
     let(:all_readings) { [reading_a, reading_b] }
 
     before do
