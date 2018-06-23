@@ -7,12 +7,5 @@ module Api
       readings = meters.map { |m| m.readings.order(:time).last }
       render plain: PrometheusFormatter.format(readings)
     end
-
-    private
-
-    def limit
-      return Integer(params[:limit]) if params[:limit]
-      1000
-    end
   end
 end
