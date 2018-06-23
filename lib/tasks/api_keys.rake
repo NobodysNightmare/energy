@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :api_keys do
   desc 'Lists all existing API-Keys'
   task list: :environment do

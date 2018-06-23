@@ -26,7 +26,7 @@ RSpec.describe NeighbourFinder do
   end
 
   context 'time is exactly on a reading' do
-    [:reading_1, :reading_2, :reading_3, :reading_4, :reading_5].each do |name|
+    %i[reading_1 reading_2 reading_3 reading_4 reading_5].each do |name|
       context name.to_s do
         let(:current_reading) { public_send(name) }
         let(:time) { current_reading.time }

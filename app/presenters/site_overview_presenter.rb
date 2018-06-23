@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class SiteOverviewPresenter < SimpleDelegator
   def current_power_draw
     (imports.current_power + generators.current_power) - exports.current_power

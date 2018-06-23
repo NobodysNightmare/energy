@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   if Rails.env.production?
     provider :google_oauth2,

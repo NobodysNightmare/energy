@@ -1,13 +1,12 @@
 # frozen_string_literal: true
+
 class SessionsController < ApplicationController
   skip_before_action :require_login
   skip_before_action :verify_authenticity_token, only: :create
 
-  def missing
-  end
+  def missing; end
 
-  def insufficient
-  end
+  def insufficient; end
 
   def new
     return redirect_to '/auth/google' if Rails.env.production?

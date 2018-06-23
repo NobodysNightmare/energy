@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :users do
   desc 'Lists all existing Users'
   task list: :environment do

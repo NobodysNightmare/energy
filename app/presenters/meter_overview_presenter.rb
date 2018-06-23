@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class MeterOverviewPresenter < SimpleDelegator
   def current_power
     daily_statistics.current_power

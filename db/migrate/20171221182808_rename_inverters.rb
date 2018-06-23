@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RenameInverters < ActiveRecord::Migration[5.0]
   def up
     rename_table :inverters, :meters

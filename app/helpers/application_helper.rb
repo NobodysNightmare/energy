@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ApplicationHelper
   def site_options(selected = nil)
     sites = Site.all

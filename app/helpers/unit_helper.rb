@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module UnitHelper
   def format_watt(value)
     value, prefix = prefix(value)
