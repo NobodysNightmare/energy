@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319171348) do
+ActiveRecord::Schema.define(version: 20180625072258) do
 
   create_table "api_keys", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180319171348) do
     t.datetime "updated_at", null: false
     t.integer "site_id"
     t.integer "meter_type", default: 0, null: false
+    t.integer "current_duration", default: 300, null: false
     t.index ["serial"], name: "index_meters_on_serial", unique: true
     t.index ["site_id"], name: "index_meters_on_site_id"
   end

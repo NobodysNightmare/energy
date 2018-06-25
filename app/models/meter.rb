@@ -9,4 +9,9 @@ class Meter < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :site_id }
   validates :serial, presence: true, uniqueness: true
+
+  def current_duration
+    seconds = super
+    ActiveSupport::Duration.build(seconds)
+  end
 end

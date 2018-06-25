@@ -49,6 +49,14 @@ class MetersController < ApplicationController
   private
 
   def meter_params
-    params.require(:meter).permit(:name, :serial, :site_id, :meter_type)
+    result = params.require(:meter).permit(:name, :serial, :site_id, :meter_type, :current_duration)
+    convert_duration!(result)
+    result
+  end
+
+  def convert_duration!(params_hash)
+    if params_hash[:current_duration]
+      params_hash[:current_duration] = params_hash[:current_duration].to_i * 60
+    end
   end
 end

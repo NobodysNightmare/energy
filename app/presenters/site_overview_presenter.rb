@@ -45,7 +45,8 @@ class SiteOverviewPresenter < SimpleDelegator
         ReadingStatistics.new(
           meter.readings,
           from: Time.current.beginning_of_day,
-          to: Time.current
+          to: Time.current,
+          current_duration: meter.current_duration
         )
       end
     )
@@ -57,7 +58,8 @@ class SiteOverviewPresenter < SimpleDelegator
         ReadingStatistics.new(
           meter.readings,
           from: Time.current.beginning_of_day,
-          to: Time.current
+          to: Time.current,
+          current_duration: meter.current_duration
         )
       end
     )
@@ -69,7 +71,8 @@ class SiteOverviewPresenter < SimpleDelegator
         ReadingStatistics.new(
           meter.readings,
           from: Time.current.beginning_of_day,
-          to: Time.current
+          to: Time.current,
+          current_duration: meter.current_duration
         )
       end
     )

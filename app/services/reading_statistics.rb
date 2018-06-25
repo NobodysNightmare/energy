@@ -3,20 +3,19 @@
 class ReadingStatistics
   attr_reader :readings
 
-  def initialize(readings, from:, to:)
+  def initialize(readings, from:, to:, current_duration: 5.minutes)
     @readings = readings
     @from = from
     @to = to
+    @current_duration = current_duration
   end
 
   def current_power
     @current_power ||= begin
-      before, now = latest_cycle
-      if now && before && now.time > @from
-        time_passed = now.time - before.time
-        generated = now.value - before.value
-
-        generated * (1.hour / time_passed)
+      now = latest_reading
+      if now && now.time > @from
+        generated = energy_between(now.time - @current_duration, now.time)
+        generated * (1.hour / @current_duration)
       else
         0.0
       end
@@ -39,16 +38,10 @@ class ReadingStatistics
   end
 
   def latest_reading
-    latest_cycle.last
+    @latest_reading ||= readings.order(time: :asc).last
   end
 
   private
-
-  def latest_cycle
-    @latest_cycle ||= readings.order(time: :desc)
-                              .limit(2)
-                              .reverse
-  end
 
   def interpolator
     @interpolator ||= ReadingInterpolator.new(readings, from: @from, to: @to)
