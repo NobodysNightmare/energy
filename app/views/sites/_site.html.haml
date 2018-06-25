@@ -54,6 +54,6 @@
           %a.btn.btn-default.btn-sm{href: site_meters_path(site)}
             = I18n.t('buttons.meters')
           - if site.external_link.present?
-            %a.btn.btn-default.btn-sm{href: site.external_link}
+            %a.btn.btn-default.btn-sm{href: site.external_link, target: '_blank'}
               %i.fa.fa-info{title: t('.external_link')}
                 .sr-only= t('.external_link')
