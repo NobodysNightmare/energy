@@ -10,6 +10,10 @@
         = f.label :name
         = f.text_field :name, class: 'form-control'
 
+      .form-group
+        = f.label :external_link
+        = f.text_field :external_link, type: 'url', class: 'form-control'
+
       = f.submit I18n.t('buttons.save'), class: 'btn btn-success'
 
 - unless @site.new_record?

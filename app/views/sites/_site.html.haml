@@ -51,3 +51,6 @@
             = t('.timeline_button')
           %a.btn.btn-default.btn-sm{href: site_meters_path(site)}
             = I18n.t('buttons.meters')
+          - if site.external_link.present?
+            %a.btn.btn-default.btn-sm{href: site.external_link}
+              %i.fa.fa-info{title: t('.external_link')}

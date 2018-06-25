@@ -38,3 +38,6 @@ en:
       meter:
         name: Name
         serial: Serial Number
+      site:
+        external_link: External Link
+        name: Name
