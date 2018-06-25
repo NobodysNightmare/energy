@@ -4,6 +4,8 @@
     .pull-right
       %a{href: edit_site_path(site), title: I18n.t('buttons.edit')}
         %i.fa.fa-pencil
+        .sr-only= I18n.t('buttons.edit')
+
   .panel-body
     %dl.dl-horizontal
       %dt= t('.daily_energy_draw')
@@ -54,3 +56,4 @@
           - if site.external_link.present?
             %a.btn.btn-default.btn-sm{href: site.external_link}
               %i.fa.fa-info{title: t('.external_link')}
+                .sr-only= t('.external_link')
