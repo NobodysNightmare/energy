@@ -1,0 +1,21 @@
+.panel.panel-default
+  .panel-heading
+    = t('.title')
+  .panel-body
+    %form
+      .form-group
+        %label{ for: 'start' }
+          = t('.start')
+        %input.form-control#start{ name: 'start', type: 'date', value: start_date.iso8601 }
+      .form-group
+        %label{ for: 'end' }
+          = t('.end')
+        %input.form-control#end{ name: 'end', type: 'date', value: end_date.iso8601 }
+      .form-group
+        %label{ for: 'period' }
+          = t('.period')
+        %select.form-control#period{ name: 'period' }
+          = timeline_period_options(period)
+
+      %button.btn.btn-primary
+        = t('.submit_button')

@@ -1,0 +1,8 @@
+en:
+  timelines:
+    time_chooser:
+      end: End
+      period: "Period"
+      start: Start
+      submit_button: Filter
+      title: Choose timeframe

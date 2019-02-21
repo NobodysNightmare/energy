@@ -1,0 +1,8 @@
+de:
+  timelines:
+    time_chooser:
+      end: Ende
+      period: "Interval"
+      start: Start
+      submit_button: Filtern
+      title: Zeitraum bestimmen

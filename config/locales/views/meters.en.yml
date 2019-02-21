@@ -8,3 +8,4 @@ en:
         grid_import: "Imported from grid today"
       latest_reading: "Latest reading"
       refreshed_at: "Updated at %{time}"
+      timeline_button: "Timeline"

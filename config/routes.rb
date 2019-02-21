@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   resources :meters, only: %i[index new edit create update destroy] do
     resources :readings, only: %i[index new create update destroy]
+
+    member do
+      get 'timeline' => 'meters_timelines#index'
+    end
   end
 
   resources :sites, only: %i[index new edit create update destroy] do

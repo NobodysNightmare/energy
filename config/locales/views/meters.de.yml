@@ -8,3 +8,4 @@ de:
         grid_import: "Heute vom Netz bezogen"
       latest_reading: "Zählerstand"
       refreshed_at: "Aktualisiert: %{time}"
+      timeline_button: "Zeitverlauf"
