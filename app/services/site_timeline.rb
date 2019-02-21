@@ -15,6 +15,8 @@ class SiteTimeline
     year: 1.year
   }.freeze
 
+  attr_writer :period
+
   def initialize(site, from, to)
     @site = site
     @from = from.to_time
@@ -22,16 +24,7 @@ class SiteTimeline
   end
 
   def period
-    duration = @to - @from
-    if duration <= 31.days
-      :day
-    elsif duration <= 30.weeks
-      :week
-    elsif duration <= 36.months
-      :month
-    else
-      :year
-    end
+    @period ||= default_period
   end
 
   def rows
@@ -106,5 +99,18 @@ class SiteTimeline
         )
       end
     )
+  end
+
+  def default_period
+    duration = @to - @from
+    if duration <= 31.days
+      :day
+    elsif duration <= 30.weeks
+      :week
+    elsif duration <= 36.months
+      :month
+    else
+      :year
+    end
   end
 end

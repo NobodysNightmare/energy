@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class SitesTimelinesController < ApplicationController
-  helper_method :start_date, :end_date
+  helper_method :start_date, :end_date, :period
 
   def index
     @site = Site.find(params[:id])
     @timeline = SiteTimeline.new(@site, start_date, end_date.tomorrow)
+    @timeline.period = period if period.present?
   end
 
   private
@@ -24,5 +25,9 @@ class SitesTimelinesController < ApplicationController
     else
       Date.current
     end
+  end
+
+  def period
+    params[:period].presence&.to_sym
   end
 end

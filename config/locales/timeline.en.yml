@@ -1,0 +1,8 @@
+en:
+  timeline:
+    periods:
+      none: "Choose automatically"
+      day: "Daily"
+      week: "Weekly"
+      month: "Monthly"
+      year: "Yearly"

@@ -8,6 +8,7 @@ en:
       used: Used
       time_chooser:
         end: End
-        title: Choose timeframe
+        period: "Period"
         start: Start
         submit_button: Filter
+        title: Choose timeframe

@@ -8,6 +8,7 @@ de:
       used: Verbraucht
       time_chooser:
         end: Ende
-        title: Zeitraum bestimmen
+        period: "Interval"
         start: Start
         submit_button: Filtern
+        title: Zeitraum bestimmen

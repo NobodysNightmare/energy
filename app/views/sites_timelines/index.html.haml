@@ -29,6 +29,11 @@
         %label{ for: 'end' }
           = t('.time_chooser.end')
         %input.form-control#end{ name: 'end', type: 'date', value: end_date.iso8601 }
+      .form-group
+        %label{ for: 'period' }
+          = t('.time_chooser.period')
+        %select.form-control#period{ name: 'period' }
+          = timeline_period_options(period)
 
       %button.btn.btn-primary
         = t('.time_chooser.submit_button')
