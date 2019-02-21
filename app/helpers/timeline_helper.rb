@@ -2,7 +2,7 @@
 
 module TimelineHelper
   def timeline_period_options(selected = nil)
-    options = [''] + SiteTimeline::PERIOD_DURATIONS.keys
+    options = [''] + Timeline::PERIOD_DURATIONS.keys
     options_for_select(
       options.map do |identifier|
         [
