@@ -1,0 +1,9 @@
+en:
+  readings:
+    index:
+      finder:
+        after: "Nachher"
+        before: "Vorher"
+        date: "Datum"
+        submit: "Suchen"
+        title: "Zählerstand finden"

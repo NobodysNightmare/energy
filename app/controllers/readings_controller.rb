@@ -10,6 +10,16 @@ class ReadingsController < ApplicationController
                      .per(100)
   end
 
+  def around
+    finder = NeighbourFinder.new(meter.readings.order(time: :asc))
+    time = Date.iso8601(params[:time]).beginning_of_day
+    before, after = finder.readings_around(time)
+    render json: {
+      before: { time: I18n.l(before.time, format: :short), value: helpers.format_watt_hours(before.value) },
+      after: { time: I18n.l(after.time, format: :short), value: helpers.format_watt_hours(after.value) }
+    }
+  end
+
   def new
     @reading = Reading.new(meter_id: params[:meter_id], time: Time.current)
   end

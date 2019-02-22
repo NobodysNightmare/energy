@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root 'sites#index'
 
   resources :meters, only: %i[index new edit create update destroy] do
-    resources :readings, only: %i[index new create update destroy]
+    resources :readings, only: %i[index new create update destroy] do
+      collection do
+        get :around
+      end
+    end
 
     member do
       get 'timeline' => 'meters_timelines#index'

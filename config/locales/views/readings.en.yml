@@ -1,0 +1,9 @@
+en:
+  readings:
+    index:
+      finder:
+        after: "After"
+        before: "Before"
+        date: "Date"
+        submit: "Find"
+        title: "Find readings"

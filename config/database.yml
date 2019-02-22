@@ -10,6 +10,7 @@ development:
 test:
   <<: *default
   database: energy_test
+  host: 127.0.0.1
 
 production:
   adapter: mysql2

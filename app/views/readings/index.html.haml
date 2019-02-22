@@ -5,11 +5,34 @@
 
 %h1= I18n.t('titles.readings_for_meter', meter: meter.name)
 
+.panel.panel-default.find-readings-around{ data: { meter_id: params[:meter_id] } }
+  .panel-heading= t('.finder.title')
+  .panel-body
+    .form
+      %label= t('.finder.date')
+      %input.form-control.finder-input-date{ type: 'date' }
+
+      %button.btn.btn-default.finder-submit= t('.finder.submit')
+
+  %table.table.finder-result-container.hidden
+    %thead
+      %tr
+        %th
+        %th= Reading.human_attribute_name(:time)
+        %th= Reading.human_attribute_name(:value)
+    %tr.finder-result-before
+      %th= t('.finder.before')
+      %td.finder-result-time -
+      %td.finder-result-value -
+    %tr.finder-result-after
+      %th= t('.finder.after')
+      %td.finder-result-time -
+      %td.finder-result-value -
+
 .row
   .col-md-2
     = link_to({ controller: :readings, action: :new, meter_id: params[:meter_id] }, class: 'btn btn-primary') do
       = I18n.t('buttons.create_model', model: Reading.model_name.human)
-
 
 %table.table
   %thead
