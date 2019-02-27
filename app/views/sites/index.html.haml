@@ -2,10 +2,10 @@
 
 .row
   - @sites.each do |site|
-    .col-md-6
+    .col-lg-6
       = render 'site', site: site
 
 .row
-  .col-md-2
+  .col-lg-2
     %a.btn.btn-primary{href: new_site_path}
       = I18n.t('buttons.create_model', model: Site.model_name.human)

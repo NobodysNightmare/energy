@@ -1,10 +1,10 @@
-.panel.panel-default
-  .panel-heading
+.card
+  .card-header
     - if @meter.new_record?
       = I18n.t('titles.new_model', model: Meter.model_name.human)
     - else
       = I18n.t('titles.edit_model', model: Meter.model_name.human)
-  .panel-body
+  .card-body
     = form_for @meter do |f|
       .form-group
         = f.label :site_id
@@ -26,16 +26,16 @@
         = f.label :current_duration
         .input-group
           = f.text_field :current_duration, class: 'form-control', type: 'number', value: @meter.current_duration.parts[:minutes]
-          .input-group-addon
-            min
+          .input-group-append
+            .input-group-text min
 
       = f.submit I18n.t('buttons.save'), class: 'btn btn-success'
 
 - unless @meter.new_record?
-  .panel.panel-danger
-    .panel-heading
+  .card.my-3.border-danger
+    .card-header.bg-danger.text-white
       = I18n.t('titles.destroy_model', model: Meter.model_name.human)
-    .panel-body
+    .card-body
       = link_to I18n.t('buttons.delete'), meter_path(@meter),
                 method: :delete,
                 class: 'btn btn-danger btn-sm',

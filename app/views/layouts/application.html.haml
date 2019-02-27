@@ -6,26 +6,20 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    %link{crossorigin: "anonymous", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", integrity: "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", rel: "stylesheet"}/
-    %script{crossorigin: "anonymous", integrity: "sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
-    %script{src: "https://use.fontawesome.com/16187b24e4.js"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
-        .navbar-header
-          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#energy-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{href: root_path}= I18n.t('titles.brand')
-        #energy-navbar-collapse.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li
-              %a{href: sites_path}= Site.model_name.human(count: 2)
-            %li
-              %a{href: meters_path}= Meter.model_name.human(count: 2)
+    %nav.navbar.navbar-expand-md.navbar-light.bg-light.mb-3
+      %a.navbar-brand{href: root_path}= I18n.t('titles.brand')
+      %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#energy-navbar-collapse' }, aria: { expanded: 'false', label: 'Toggle navigation' } }
+        %span.navbar-toggler-icon
+
+      #energy-navbar-collapse.collapse.navbar-collapse
+        %ul.navbar-nav
+          %li.nav-item
+            %a.nav-link{href: sites_path}= Site.model_name.human(count: 2)
+          %li.nav-item
+            %a.nav-link{href: meters_path}= Meter.model_name.human(count: 2)
+
     .container-fluid
       - flash.each do |type, message|
         - if type == 'success'

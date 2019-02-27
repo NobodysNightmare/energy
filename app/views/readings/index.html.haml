@@ -1,18 +1,19 @@
 - content_for :breadcrumb do
-  %li= link_to Meter.model_name.human(count: 2), meters_path
-  %li= @meter.name
-  %li= Reading.model_name.human(count: 2)
+  %li.breadcrumb-item= link_to Meter.model_name.human(count: 2), meters_path
+  %li.breadcrumb-item= @meter.name
+  %li.breadcrumb-item= Reading.model_name.human(count: 2)
 
 %h1= I18n.t('titles.readings_for_meter', meter: meter.name)
 
-.panel.panel-default.find-readings-around{ data: { meter_id: params[:meter_id] } }
-  .panel-heading= t('.finder.title')
-  .panel-body
+.card.my-3.find-readings-around{ data: { meter_id: params[:meter_id] } }
+  .card-header= t('.finder.title')
+  .card-body
     .form
-      %label= t('.finder.date')
-      %input.form-control.finder-input-date{ type: 'date' }
+      .form-group
+        %label= t('.finder.date')
+        %input.form-control.finder-input-date{ type: 'date' }
 
-      %button.btn.btn-default.finder-submit= t('.finder.submit')
+      %button.btn.btn-secondary.finder-submit= t('.finder.submit')
 
   %table.table.finder-result-container.hidden
     %thead
@@ -30,8 +31,8 @@
       %td.finder-result-value -
 
 .row
-  .col-md-2
-    = link_to({ controller: :readings, action: :new, meter_id: params[:meter_id] }, class: 'btn btn-primary') do
+  .col-lg-2
+    = link_to({ controller: :readings, action: :new, meter_id: params[:meter_id] }, class: 'btn btn-primary my-3') do
       = I18n.t('buttons.create_model', model: Reading.model_name.human)
 
 %table.table

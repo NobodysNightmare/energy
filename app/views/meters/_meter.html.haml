@@ -1,11 +1,11 @@
-.panel.panel-default
-  .panel-heading
+.card.my-3
+  .card-header
     = meter.name
-    .pull-right
+    .float-right
       %a{href: edit_meter_path(meter), title: I18n.t('buttons.edit')}
-        %i.fa.fa-pencil
+        %i.fa.fa-pen
         .sr-only= I18n.t('buttons.edit')
-  .panel-body
+  .card-body
     %dl.dl-horizontal
       %dt= t('.latest_reading')
       %dd
@@ -18,16 +18,16 @@
       %dt= t('.current_power')
       %dd= format_watt(meter.current_power)
 
-  .panel-footer
+  .card-footer
     .row
-      .col-md-6
+      .col-lg-6
         - if meter.latest_reading
           = t('.refreshed_at', time: l(meter.latest_reading.time, format: :time))
           %abbr{title: l(meter.latest_reading.time)}
             = "(#{I18n.t('time_ago', time: time_ago_in_words(meter.latest_reading.time))})"
-      .col-md-6
-        .pull-right
+      .col-lg-6
+        .float-right
           %a.btn.btn-primary.btn-sm{href: timeline_meter_path(meter)}
             = t('.timeline_button')
-          %a.btn.btn-default.btn-sm{href: meter_readings_path(meter)}
+          %a.btn.btn-secondary.btn-sm{href: meter_readings_path(meter)}
             = I18n.t('buttons.readings')

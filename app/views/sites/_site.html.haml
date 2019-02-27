@@ -1,12 +1,12 @@
-.panel.panel-default
-  .panel-heading
+.card.my-3
+  .card-header
     = site.name
-    .pull-right
+    .float-right
       %a{href: edit_site_path(site), title: I18n.t('buttons.edit')}
-        %i.fa.fa-pencil
+        %i.fa.fa-pen
         .sr-only= I18n.t('buttons.edit')
 
-  .panel-body
+  .card-body
     %dl.dl-horizontal
       %dt= t('.daily_energy_draw')
       %dd
@@ -40,20 +40,20 @@
             %tr
               %th= t('.current_grid_export_power')
               %td= format_watt(site.current_grid_export_power)
-  .panel-footer
+  .card-footer
     .row
-      .col-md-6
+      .col-lg-6
         - if site.latest_reading
           = t('.refreshed_at', time: l(site.latest_reading.time, format: :time))
           %abbr{title: l(site.latest_reading.time)}
             = "(#{I18n.t('time_ago', time: time_ago_in_words(site.latest_reading.time))})"
-      .col-md-6
-        .pull-right
+      .col-lg-6
+        .float-right
           %a.btn.btn-primary.btn-sm{href: timeline_site_path(site)}
             = t('.timeline_button')
-          %a.btn.btn-default.btn-sm{href: site_meters_path(site)}
+          %a.btn.btn-secondary.btn-sm{href: site_meters_path(site)}
             = I18n.t('buttons.meters')
           - if site.external_link.present?
-            %a.btn.btn-default.btn-sm{href: site.external_link, target: '_blank'}
+            %a.btn.btn-secondary.btn-sm{href: site.external_link, target: '_blank'}
               %i.fa.fa-info{title: t('.external_link')}
                 .sr-only= t('.external_link')

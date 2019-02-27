@@ -2,10 +2,10 @@
 
 .row
   - @meters.each do |meter|
-    .col-md-6
+    .col-lg-6
       = render 'meter', meter: meter
 
 .row
-  .col-md-2
+  .col-lg-2
     = link_to({ controller: :meters, action: :new, site_id: params[:site_id] }, class: 'btn btn-primary') do
       = I18n.t('buttons.create_model', model: Meter.model_name.human)

@@ -1,20 +1,20 @@
 - content_for :breadcrumb do
-  %li= link_to Meter.model_name.human(count: 2), meters_path
-  %li= @reading.meter.name
-  %li= link_to Reading.model_name.human(count: 2), meter_readings_path(@reading.meter_id)
-  %li
+  %li.breadcrumb-item= link_to Meter.model_name.human(count: 2), meters_path
+  %li.breadcrumb-item= @reading.meter.name
+  %li.breadcrumb-item= link_to Reading.model_name.human(count: 2), meter_readings_path(@reading.meter_id)
+  %li.breadcrumb-item
     - if @reading.new_record?
       = I18n.t('actions.new')
     - else
       = I18n.t('actions.edit')
 
-.panel.panel-default
-  .panel-heading
+.card
+  .card-header
     - if @reading.new_record?
       = I18n.t('titles.new_model', model: Reading.model_name.human)
     - else
       = I18n.t('titles.edit_model', model: Reading.model_name.human)
-  .panel-body
+  .card-body
     = form_for [@reading.meter, @reading] do |f|
       = f.hidden_field :meter_id
 
@@ -26,16 +26,16 @@
         = f.label :value
         .input-group
           = f.text_field :value, class: 'form-control', type: 'number'
-          .input-group-addon
-            Wh
+          .input-group-append
+            .input-group-text Wh
 
       = f.submit I18n.t('buttons.save'), class: 'btn btn-success'
 
 - unless @reading.new_record?
-  .panel.panel-danger
-    .panel-heading
+  .card.my-3.border-danger
+    .card-header.bg-danger.text-white
       = I18n.t('titles.destroy_model', model: Reading.model_name.human)
-    .panel-body
+    .card-body
       = link_to I18n.t('buttons.delete'), reading_path(@reading),
                 method: :delete,
                 class: 'btn btn-danger btn-sm',
