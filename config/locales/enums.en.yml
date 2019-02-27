@@ -5,3 +5,4 @@ en:
         generator: "Generator"
         grid_export: "Grid Export"
         grid_import: "Grid Import"
+        internal: "Internal meter"

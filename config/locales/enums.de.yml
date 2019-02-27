@@ -5,3 +5,4 @@ de:
         generator: "Erzeuger"
         grid_export: "Netzeinspeisung"
         grid_import: "Netzbezug"
+        internal: "Interner Zähler"
