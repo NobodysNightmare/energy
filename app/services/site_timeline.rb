@@ -2,7 +2,7 @@
 
 class SiteTimeline < Timeline
   def initialize(site, from, to)
-    @site = site
+    @statistics = SiteStatistics.new(site, from, to)
     super(from, to)
   end
 
@@ -10,45 +10,9 @@ class SiteTimeline < Timeline
 
   def columns
     {
-      generated: generators,
-      exported: exports,
-      imported: imports
+      generated: @statistics.generators,
+      exported: @statistics.exports,
+      imported: @statistics.imports
     }
-  end
-
-  def generators
-    @generators ||= CollectiveReadingStatistics.new(
-      @site.meters.generator.map do |meter|
-        ReadingStatistics.new(
-          meter.readings,
-          from: @from,
-          to: @to
-        )
-      end
-    )
-  end
-
-  def exports
-    @exports ||= CollectiveReadingStatistics.new(
-      @site.meters.grid_export.map do |meter|
-        ReadingStatistics.new(
-          meter.readings,
-          from: @from,
-          to: @to
-        )
-      end
-    )
-  end
-
-  def imports
-    @imports ||= CollectiveReadingStatistics.new(
-      @site.meters.grid_import.map do |meter|
-        ReadingStatistics.new(
-          meter.readings,
-          from: @from,
-          to: @to
-        )
-      end
-    )
   end
 end
