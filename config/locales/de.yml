@@ -12,6 +12,7 @@ de:
     edit: "Bearbeiten"
     delete: "Löschen"
     meters: "Zähler"
+    rates: "Tarife"
     readings: "Alle Zählerstände"
   flashs:
     created_model: "%{model} wurde erstellt."
@@ -22,6 +23,7 @@ de:
     new_model: "%{model} anlegen"
     edit_model: "%{model} bearbeiten"
     destroy_model: "%{model} löschen"
+    rates_for_site: "Tarife für %{site}"
     readings_for_meter: "Zählerstände für %{meter}"
   activerecord:
     models:

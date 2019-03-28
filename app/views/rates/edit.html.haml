@@ -1,0 +1,48 @@
+.card
+  .card-header
+    - if @rate.new_record?
+      = I18n.t('titles.new_model', model: Rate.model_name.human)
+    - else
+      = I18n.t('titles.edit_model', model: Rate.model_name.human)
+  .card-body
+    = form_for @rate do |f|
+      .form-group
+        = f.label :site_id
+        = f.select :site_id, site_options(@rate.site_id), {}, class: 'form-control'
+
+      .form-group
+        = f.label :valid_from
+        = f.text_field :valid_from, class: 'form-control', type: 'date', value: @rate.valid_from.iso8601
+
+      .form-group
+        = f.label :export_rate
+        .input-group
+          = f.text_field :export_rate, class: 'form-control', type: 'number', step: '0.001'
+          .input-group-append
+            .input-group-text € / kWh
+
+      .form-group
+        = f.label :import_rate
+        .input-group
+          = f.text_field :import_rate, class: 'form-control', type: 'number', step: '0.001'
+          .input-group-append
+            .input-group-text € / kWh
+
+      .form-group
+        = f.label :self_consume_rate
+        .input-group
+          = f.text_field :self_consume_rate, class: 'form-control', type: 'number', step: '0.001'
+          .input-group-append
+            .input-group-text € / kWh
+
+      = f.submit I18n.t('buttons.save'), class: 'btn btn-success'
+
+- unless @rate.new_record?
+  .card.my-3.border-danger
+    .card-header.bg-danger.text-white
+      = I18n.t('titles.destroy_model', model: Rate.model_name.human)
+    .card-body
+      = link_to I18n.t('buttons.delete'), rate_path(@rate),
+                method: :delete,
+                class: 'btn btn-danger btn-sm',
+                data: { confirm: I18n.t('confirm_delete_named', name: @rate.valid_from) }

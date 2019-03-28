@@ -16,6 +16,14 @@ module UnitHelper
     "#{value} #{prefix}Wh"
   end
 
+  def format_currency(value)
+    if value < 1.0
+      number_to_currency(value * 100, unit: 'ct', format: '%n %u')
+    else
+      number_to_currency(value, unit: '€', format: '%n %u')
+    end
+  end
+
   private
 
   def prefix(value)

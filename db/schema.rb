@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625180458) do
+ActiveRecord::Schema.define(version: 2019_03_27_072005) do
 
-  create_table "api_keys", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "api_keys", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "secret", null: false
     t.datetime "created_at", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20180625180458) do
     t.index ["secret"], name: "index_api_keys_on_secret", unique: true
   end
 
-  create_table "meters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "meters", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "serial", null: false
     t.datetime "created_at", null: false
@@ -33,7 +33,18 @@ ActiveRecord::Schema.define(version: 20180625180458) do
     t.index ["site_id"], name: "index_meters_on_site_id"
   end
 
-  create_table "readings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rates", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "site_id", null: false
+    t.date "valid_from", null: false
+    t.decimal "import_rate", precision: 6, scale: 4, null: false
+    t.decimal "export_rate", precision: 6, scale: 4, null: false
+    t.decimal "self_consume_rate", precision: 6, scale: 4, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_rates_on_site_id"
+  end
+
+  create_table "readings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "meter_id", null: false
     t.datetime "time", null: false
     t.integer "value", null: false
@@ -42,14 +53,14 @@ ActiveRecord::Schema.define(version: 20180625180458) do
     t.index ["time"], name: "index_readings_on_time"
   end
 
-  create_table "sites", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sites", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "external_link"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "user_id", limit: 100, null: false
     t.string "email", default: "", null: false
     t.string "name", default: "", null: false
@@ -59,5 +70,6 @@ ActiveRecord::Schema.define(version: 20180625180458) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
+  add_foreign_key "rates", "sites", on_delete: :cascade
   add_foreign_key "readings", "meters", on_delete: :cascade
 end

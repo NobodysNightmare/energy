@@ -12,6 +12,7 @@ en:
     edit: "Edit"
     delete: "Delete"
     meters: "Meters"
+    rates: "Rates"
     readings: "All Readings"
   flashs:
     created_model: "%{model} was created."
@@ -22,6 +23,7 @@ en:
     new_model: "New %{model}"
     edit_model: "Edit %{model}"
     destroy_model: "Delete %{model}"
+    rates_for_site: "Rates for %{site}"
     readings_for_meter: "Readings for %{meter}"
   activerecord:
     models:

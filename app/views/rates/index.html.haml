@@ -1,0 +1,27 @@
+- content_for :breadcrumb do
+  %li.breadcrumb-item= link_to Site.model_name.human(count: 2), sites_path
+  %li.breadcrumb-item= @site.name
+  %li.breadcrumb-item= Rate.model_name.human(count: 2)
+
+%h1= I18n.t('titles.rates_for_site', site: @site.name)
+
+.row
+  .col-lg-2
+    = link_to({ controller: :rates, action: :new, site_id: params[:site_id] }, class: 'btn btn-primary my-3') do
+      = I18n.t('buttons.create_model', model: Rate.model_name.human)
+
+%table.table
+  %thead
+    %tr
+      %th= Rate.human_attribute_name(:valid_from)
+      %th= Rate.human_attribute_name(:import_rate)
+      %th= Rate.human_attribute_name(:export_rate)
+      %th= Rate.human_attribute_name(:self_consume_rate)
+  - @rates.each do |rate|
+    %tr
+      %td
+        %a{ href: edit_site_rate_path(rate.id, site_id: @site.id) }
+          = I18n.l(rate.valid_from)
+      %td= format_currency(rate.import_rate)
+      %td= format_currency(rate.export_rate)
+      %td= format_currency(rate.self_consume_rate)

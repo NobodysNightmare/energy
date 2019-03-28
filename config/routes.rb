@@ -17,11 +17,14 @@ Rails.application.routes.draw do
 
   resources :sites, only: %i[index new edit create update destroy] do
     resources :meters, only: %i[index new], controller: :meters
+    resources :rates, only: %i[index new edit]
 
     member do
       get 'timeline' => 'sites_timelines#index'
     end
   end
+
+  resources :rates, only: %i[create update destroy]
 
   namespace :api do
     # Keeping up backwards compatibility with older API
