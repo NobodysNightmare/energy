@@ -10,7 +10,7 @@ class MeterTimeline < Timeline
 
   def columns
     {
-      meter: meter_statistics
+      meter: meter_statistics.method(:energy_between)
     }
   end
 

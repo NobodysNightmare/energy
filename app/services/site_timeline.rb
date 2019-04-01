@@ -10,9 +10,9 @@ class SiteTimeline < Timeline
 
   def columns
     {
-      generated: @statistics.generators,
-      exported: @statistics.exports,
-      imported: @statistics.imports
+      generated: @statistics.generators.method(:energy_between),
+      exported: @statistics.exports.method(:energy_between),
+      imported: @statistics.imports.method(:energy_between)
     }
   end
 end

@@ -58,8 +58,8 @@ class Timeline
       formatted_period: format_period(from)
     }
 
-    columns.each do |key, stats|
-      row[key] = stats.energy_between(from, to)
+    columns.each do |key, getter|
+      row[key] = getter.call(from, to)
     end
 
     row
