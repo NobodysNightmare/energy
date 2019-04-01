@@ -1,0 +1,17 @@
+%h1= @site.name
+
+%table.table
+  %thead
+    %th= t('.period')
+    %th= t('.import_cost')
+    %th= t('.self_consume_cost')
+    %th= t('.export_gain')
+  %tbody
+    - @timeline.rows.each do |row|
+      %tr
+        %td= row[:formatted_period]
+        %td= format_currency row[:import_cost]
+        %td= format_currency row[:self_consume_cost]
+        %td= format_currency row[:export_gain]
+
+= render 'timelines/time_chooser', start_date: start_date, end_date: end_date, period: period

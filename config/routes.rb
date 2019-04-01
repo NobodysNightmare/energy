@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     member do
       get 'timeline' => 'sites_timelines#index'
+      get 'costs/timeline' => 'site_costs_timelines#index'
     end
   end
 
