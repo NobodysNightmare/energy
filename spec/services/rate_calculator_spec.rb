@@ -34,6 +34,17 @@ RSpec.describe RateCalculator do
       expect(statistics).to receive(:energy_between).with(from, to)
       subject
     end
+
+    context 'when rate_type is given as lambda' do
+      let(:rate_type) { ->(r) { 40 } }
+
+      it('assumes value from lambda') { is_expected.to eq 400 }
+
+      it 'passes the current rate into the lambda' do
+        expect(rate_type).to receive(:call).with(rates.last).and_call_original
+        subject
+      end
+    end
   end
 
   context 'when range exactly covers first rate' do

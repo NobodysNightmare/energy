@@ -1,0 +1,9 @@
+en:
+  site_costs_timelines:
+    index:
+      avoided_cost: Avoided import cost
+      edit_rates: Edit rates
+      export_gain: Gain through export
+      import_cost: Import cost
+      period: Period
+      self_consume_cost: Cost for self consumption

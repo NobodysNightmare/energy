@@ -10,7 +10,7 @@ class RateCalculator
   def cost_between(from, to)
     cost = 0
     each_rate(from, to) do |rate, from, to|
-      price = watt_hour_price(rate.public_send(@rate_type))
+      price = determine_price(rate)
       cost += price * @energy_statistics.energy_between(from, to)
     end
 
@@ -50,7 +50,17 @@ class RateCalculator
     nil
   end
 
+  def determine_price(rate)
+    kwh_price = if @rate_type.respond_to?(:call)
+                  @rate_type.call(rate)
+                else
+                  rate.public_send(@rate_type)
+                end
+    
+    watt_hour_price(kwh_price)
+  end
+
   def watt_hour_price(kwh_price)
-    kwh_price / 1000
+    BigDecimal(kwh_price) / 1000
   end
 end

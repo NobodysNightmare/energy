@@ -1,11 +1,17 @@
 %h1= @site.name
 
+.row
+  .col-lg-2
+    = link_to(site_rates_path(@site), class: 'btn btn-primary my-3') do
+      = t('.edit_rates')
+
 %table.table
   %thead
     %th= t('.period')
     %th= t('.import_cost')
     %th= t('.self_consume_cost')
     %th= t('.export_gain')
+    %th= t('.avoided_cost')
   %tbody
     - @timeline.rows.each do |row|
       %tr
@@ -13,5 +19,6 @@
         %td= format_currency row[:import_cost]
         %td= format_currency row[:self_consume_cost]
         %td= format_currency row[:export_gain]
+        %td= format_currency row[:avoided_cost]
 
 = render 'timelines/time_chooser', start_date: start_date, end_date: end_date, period: period

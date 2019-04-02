@@ -1,0 +1,9 @@
+de:
+  site_costs_timelines:
+    index:
+      avoided_cost: Vermiedene Bezugskosten
+      edit_rates: Tarife bearbeiten
+      export_gain: Gewinn durch Einspeisung
+      import_cost: Bezugskosten
+      period: Zeitraum
+      self_consume_cost: Kosten für Selbstverbrauch

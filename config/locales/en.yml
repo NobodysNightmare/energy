@@ -7,12 +7,12 @@ en:
     edit: Edit
     new: New
   buttons:
+    cost_gain: "Costs & Gains"
     create_model: "Create %{model}"
     save: "Save"
     edit: "Edit"
     delete: "Delete"
     meters: "Meters"
-    rates: "Rates"
     readings: "All Readings"
   flashs:
     created_model: "%{model} was created."

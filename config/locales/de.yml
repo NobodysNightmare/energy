@@ -7,12 +7,12 @@ de:
     edit: Bearbeiten
     new: Neu
   buttons:
+    cost_gain: "Kosten & Gewinne"
     create_model: "%{model} erstellen"
     save: "Speichern"
     edit: "Bearbeiten"
     delete: "Löschen"
     meters: "Zähler"
-    rates: "Tarife"
     readings: "Alle Zählerstände"
   flashs:
     created_model: "%{model} wurde erstellt."
