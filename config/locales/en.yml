@@ -30,6 +30,9 @@ en:
       meter:
         one: Meter
         other: Meters
+      rate:
+        one: Rate
+        other: Rates
       reading:
         one: Reading
         other: Readings

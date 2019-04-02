@@ -30,6 +30,9 @@ de:
       meter:
         one: Zähler
         other: Zähler
+      rate:
+        one: Tarif
+        other: Tarife
       reading:
         one: Zählerstand
         other: Zählerstände
@@ -40,6 +43,12 @@ de:
       meter:
         name: Name
         serial: Seriennummer
+      rate:
+        export_rate: Einspeisevergütung
+        import_rate: Bezugspreis
+        self_consume_rate: Preis für Eigenverbrauch
+        site_id: Haushalt
+        valid_from: Gültig ab
       site:
         external_link: Externer Link
         name: Name
