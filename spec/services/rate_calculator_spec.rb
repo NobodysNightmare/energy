@@ -31,7 +31,7 @@ RSpec.describe RateCalculator do
     it('assumes last rate') { is_expected.to eq 300 }
 
     it 'queries the correct edge dates' do
-      expect(statistics).to receive(:energy_between).with(from, to)
+      expect(statistics).to receive(:energy_between).with(from.to_time, to.to_time)
       subject
     end
 
@@ -54,7 +54,7 @@ RSpec.describe RateCalculator do
     it('assumes first rate') { is_expected.to eq 100 }
 
     it 'queries the correct edge dates' do
-      expect(statistics).to receive(:energy_between).with(from, to)
+      expect(statistics).to receive(:energy_between).with(from.to_time, to.to_time)
       subject
     end
   end
@@ -67,8 +67,8 @@ RSpec.describe RateCalculator do
 
     it 'queries the correct edge dates' do
       mid_date = Date.iso8601('2019-02-01')
-      expect(statistics).to receive(:energy_between).with(from, mid_date).ordered
-      expect(statistics).to receive(:energy_between).with(mid_date, to).ordered
+      expect(statistics).to receive(:energy_between).with(from.to_time, mid_date.to_time).ordered
+      expect(statistics).to receive(:energy_between).with(mid_date.to_time, to.to_time).ordered
       subject
     end
   end
@@ -80,9 +80,9 @@ RSpec.describe RateCalculator do
     it('calculates cost with all rates') { is_expected.to eq 600 }
 
     it 'queries the correct edge dates' do
-      expect(statistics).to receive(:energy_between).with(rates.first.valid_from, rates.second.valid_from).ordered
-      expect(statistics).to receive(:energy_between).with(rates.second.valid_from, rates.last.valid_from).ordered
-      expect(statistics).to receive(:energy_between).with(rates.last.valid_from, to).ordered
+      expect(statistics).to receive(:energy_between).with(rates.first.valid_from.to_time, rates.second.valid_from.to_time).ordered
+      expect(statistics).to receive(:energy_between).with(rates.second.valid_from.to_time, rates.last.valid_from.to_time).ordered
+      expect(statistics).to receive(:energy_between).with(rates.last.valid_from.to_time, to.to_time).ordered
       subject
     end
   end

@@ -11,7 +11,7 @@ class RateCalculator
     cost = 0
     each_rate(from, to) do |rate, from, to|
       price = determine_price(rate)
-      cost += price * @energy_statistics.energy_between(from, to)
+      cost += price * @energy_statistics.energy_between(from.to_time, to.to_time)
     end
 
     cost
@@ -56,7 +56,7 @@ class RateCalculator
                 else
                   rate.public_send(@rate_type)
                 end
-    
+
     watt_hour_price(kwh_price)
   end
 
