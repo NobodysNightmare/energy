@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class SiteStatistics
+  attr_reader :from, :to
+
   def initialize(site, from, to)
     @site = site
     @from = from
     @to = to
   end
-  
+
   def generators
     @generators ||= CollectiveReadingStatistics.new(
       @site.meters.generator.map do |meter|
