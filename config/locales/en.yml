@@ -19,6 +19,7 @@ en:
     updated_model: "%{model} was updated."
     destroyed_model: "%{model} was deleted."
   titles:
+    battery_simulation: Battery Simulation
     brand: Energy Management
     new_model: "New %{model}"
     edit_model: "Edit %{model}"

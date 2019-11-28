@@ -1,0 +1,47 @@
+.card
+  .card-header
+    = I18n.t('titles.battery_simulation')
+  .card-body
+    = form_for :simulation, url: battery_simulations_path do |f|
+      .form-group
+        = f.label :site_id
+        = f.select :site_id, site_options, {}, class: 'form-control'
+
+      .form-group
+        = f.label :start
+        = f.text_field :start, class: 'form-control', type: 'date', value: Date.today.beginning_of_year.iso8601
+
+      .form-group
+        = f.label :end
+        = f.text_field :end, class: 'form-control', type: 'date', value: Date.today.iso8601
+
+      .form-group
+        = f.label :step_size
+        .input-group
+          = f.text_field :step_size, class: 'form-control', type: 'number', value: 15
+          .input-group-append
+            .input-group-text min
+
+      .form-group
+        = f.label :battery_capacity
+        .input-group
+          = f.text_field :battery_capacity, class: 'form-control', type: 'number', value: 3000
+          .input-group-append
+            .input-group-text Wh
+
+      .form-group
+        = f.label :battery_charge_power
+        .input-group
+          = f.text_field :battery_charge_power, class: 'form-control', type: 'number', value: 1000
+          .input-group-append
+            .input-group-text Wh
+
+      .form-group
+        = f.label :battery_discharge_power
+        .input-group
+          = f.text_field :battery_discharge_power, class: 'form-control', type: 'number', value: 1000
+          .input-group-append
+            .input-group-text Wh
+
+      %button.btn.btn-primary
+        = t('.submit_button')

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :rates, only: %i[create update destroy]
 
+  resources :battery_simulations, only: %i[new create]
+
   namespace :api do
     # Keeping up backwards compatibility with older API
     resources :inverters, param: :serial, only: [] do

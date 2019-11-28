@@ -19,6 +19,7 @@ de:
     updated_model: "%{model} wurde gespeichert."
     destroyed_model: "%{model} wurde gelöscht."
   titles:
+    battery_simulation: Batterie simulieren
     brand: Energieverwaltung
     new_model: "%{model} anlegen"
     edit_model: "%{model} bearbeiten"
