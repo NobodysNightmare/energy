@@ -6,7 +6,7 @@ class SiteStatistics
     @from = from
     @to = to
   end
-  
+
   def generators
     @generators ||= CollectiveReadingStatistics.new(
       @site.meters.generator.map do |meter|

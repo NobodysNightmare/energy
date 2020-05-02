@@ -12,6 +12,7 @@ module Api
           next if exact_duplicate?(reading)
 
           reading.save!
+          ReadingUpdateAnnouncer.announce(reading)
         end
       end
 

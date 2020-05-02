@@ -27,6 +27,7 @@ class ReadingsController < ApplicationController
   def create
     reading = Reading.create(reading_params)
     if reading.persisted?
+      ReadingUpdateAnnouncer.announce(reading)
       flash[:success] = I18n.t('flashs.created_model',
                                model: Reading.model_name.human)
     else
@@ -38,6 +39,7 @@ class ReadingsController < ApplicationController
   def update
     reading = Reading.find(params[:id])
     if reading.update(reading_params)
+      ReadingUpdateAnnouncer.announce(reading)
       flash[:success] = I18n.t('flashs.updated_model',
                                model: Reading.model_name.human)
     else
