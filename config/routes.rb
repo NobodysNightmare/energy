@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     end
 
     resources :meters, param: :serial, only: [] do
+      member do
+        get :usage
+      end
+
       resources :readings, only: [:create], controller: :readings
     end
 
