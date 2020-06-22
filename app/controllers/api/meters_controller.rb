@@ -11,10 +11,10 @@ module Api
     private
 
     def usage_result
-      result = { energy: meter_statistics.total_energy, cost: nil }
+      result = { energy: meter_statistics.total_energy.to_i, cost: nil }
 
       if TYPES_SUPPORTING_COSTS.include?(meter.meter_type.to_sym)
-        result[:cost] = rate_calculator.cost_between(from, to).round(2)
+        result[:cost] = rate_calculator.cost_between(from, to).round(2).to_f
       end
 
       result
