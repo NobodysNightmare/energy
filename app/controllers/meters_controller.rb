@@ -2,9 +2,12 @@
 
 class MetersController < ApplicationController
   def index
-    @meters = Meter.all
-    @meters = @meters.where(site_id: params[:site_id]) if params[:site_id]
-    @meters = @meters.map { |inv| MeterOverviewPresenter.new(inv) }
+    meters = Meter.all
+    meters = meters.where(site_id: params[:site_id]) if params[:site_id]
+    meters = meters.map { |inv| MeterOverviewPresenter.new(inv) }
+
+    @active_meters = meters.select(&:active?)
+    @inactive_meters = meters.reject(&:active?)
   end
 
   def new
@@ -49,7 +52,7 @@ class MetersController < ApplicationController
   private
 
   def meter_params
-    result = params.require(:meter).permit(:name, :serial, :site_id, :meter_type, :current_duration)
+    result = params.require(:meter).permit(:name, :serial, :site_id, :meter_type, :current_duration, :active)
     convert_duration!(result)
     result
   end

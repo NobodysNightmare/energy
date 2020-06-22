@@ -41,6 +41,7 @@ de:
         other: Haushalte
     attributes:
       meter:
+        active: Aktiv
         name: Name
         serial: Seriennummer
       rate:

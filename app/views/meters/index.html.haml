@@ -1,9 +1,14 @@
 %h1= Meter.model_name.human(count: 2)
 
 .row
-  - @meters.each do |meter|
+  - @active_meters.each do |meter|
     .col-lg-6
-      = render 'meter', meter: meter
+      = render 'meter', meter: meter, active: true
+
+.row
+  - @inactive_meters.each do |meter|
+    .col-lg-6
+      = render 'meter', meter: meter, active: false
 
 .row
   .col-lg-2
