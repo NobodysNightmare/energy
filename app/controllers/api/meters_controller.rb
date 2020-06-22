@@ -27,8 +27,8 @@ module Api
     def meter_statistics
       @meter_statistics ||= ReadingStatistics.new(
         meter.readings,
-        from: from.beginning_of_day,
-        to: to.end_of_day
+        from: from,
+        to: to
       )
     end
 
@@ -43,11 +43,15 @@ module Api
     end
 
     def from
-      Date.iso8601(params[:from])
+      Time.iso8601(params[:from])
+    rescue ArgumentError => e
+      raise ClientError, e.message
     end
 
     def to
-      Date.iso8601(params[:to])
+      Time.iso8601(params[:to])
+    rescue ArgumentError => e
+      raise ClientError, e.message
     end
   end
 end
