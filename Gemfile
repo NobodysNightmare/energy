@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0'
 gem 'haml-rails'
 gem 'kaminari'
 gem 'mysql2'
