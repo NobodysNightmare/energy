@@ -1,0 +1,11 @@
+de:
+  battery_simulations:
+    create:
+      charged: In Batterie geladen
+      discharged: Aus Batterie entladen
+      exported: Eingespeist
+      imported: Bezogen
+      period: Zeitraum
+      total: Summe
+    new:
+      submit_button: Simulieren

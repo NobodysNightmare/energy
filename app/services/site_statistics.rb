@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SiteStatistics
+  attr_reader :from, :to
+
   def initialize(site, from, to)
     @site = site
     @from = from

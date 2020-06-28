@@ -1,0 +1,24 @@
+%h1= I18n.t('titles.battery_simulation')
+
+%table.table
+  %thead
+    %th= t('.period')
+    %th= t('.imported')
+    %th= t('.discharged')
+    %th= t('.exported')
+    %th= t('.charged')
+  %tbody
+    - @result.frames.each do |frame|
+      %tr
+        %td= frame.formatted_date
+        %td= format_watt_hours frame.imported
+        %td= format_watt_hours frame.discharged
+        %td= format_watt_hours frame.exported
+        %td= format_watt_hours frame.charged
+  %tfoot
+    %tr.font-weight-bold
+      %td= t('.total')
+      %td= format_watt_hours @result.summary.imported
+      %td= format_watt_hours @result.summary.discharged
+      %td= format_watt_hours @result.summary.exported
+      %td= format_watt_hours @result.summary.charged

@@ -1,0 +1,6 @@
+en:
+  battery_simulations:
+    create:
+      total: Total
+    new:
+      submit_button: Simulate
