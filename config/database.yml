@@ -1,5 +1,6 @@
 default: &default
   adapter: mysql2
+  encoding: utf8
   host: "<%= ENV["SQL_HOST"] %>"
   username: "<%= ENV["SQL_USER"] %>"
   password: "<%= ENV["SQL_PASSWORD"] %>"

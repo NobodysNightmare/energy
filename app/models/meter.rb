@@ -7,8 +7,8 @@ class Meter < ApplicationRecord
 
   enum meter_type: %i[generator grid_import grid_export internal]
 
-  validates :name, presence: true, uniqueness: { scope: :site_id }
-  validates :serial, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :site_id, case_sensitive: false }
+  validates :serial, presence: true, uniqueness: { case_sensitive: false }
 
   def current_duration
     seconds = super

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_202025) do
     t.index ["site_id"], name: "index_meters_on_site_id"
   end
 
-  create_table "rates", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "rates", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "site_id", null: false
     t.date "valid_from", null: false
     t.decimal "import_rate", precision: 6, scale: 4, null: false
@@ -54,14 +54,14 @@ ActiveRecord::Schema.define(version: 2020_06_22_202025) do
     t.index ["time"], name: "index_readings_on_time"
   end
 
-  create_table "sites", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "sites", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "external_link"
   end
 
-  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "user_id", limit: 100, null: false
     t.string "email", default: "", null: false
     t.string "name", default: "", null: false
