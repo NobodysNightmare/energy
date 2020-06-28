@@ -10,7 +10,7 @@ RSpec.describe UnitHelper do
     subject { described_module.new.format_watt(value) }
 
     it 'renders a value as watts' do
-      expect(subject).to eql('500.0 W')
+      expect(subject).to eql('500 W')
     end
 
     context 'with a value above 1000 W' do
@@ -35,7 +35,7 @@ RSpec.describe UnitHelper do
     subject { described_module.new.format_watt_hours(value) }
 
     it 'renders a value as watt hours' do
-      expect(subject).to eql('500.0 Wh')
+      expect(subject).to eql('500 Wh')
     end
 
     context 'with a value above 1000 Wh' do
@@ -60,7 +60,7 @@ RSpec.describe UnitHelper do
     subject { described_module.new.format_watt_peak(value) }
 
     it 'renders a value as watt peak' do
-      expect(subject).to eql('500.0 Wp')
+      expect(subject).to eql('500 Wp')
     end
 
     context 'with a value above 1000 Wp' do

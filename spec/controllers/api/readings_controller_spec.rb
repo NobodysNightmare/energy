@@ -12,6 +12,10 @@ RSpec.describe Api::ReadingsController do
 
     subject { process :create, method: :post, params: { meter_serial: serial, readings: readings } }
 
+    before do
+      allow(ReadingUpdateAnnouncer).to receive(:announce).and_return(nil)
+    end
+
     context 'with a valid API Key' do
       before do
         allow(controller).to receive(:check_api_key)
@@ -39,6 +43,11 @@ RSpec.describe Api::ReadingsController do
       it 'creates a reading for the given time' do
         subject
         expect(Reading.first.time).to eql time
+      end
+
+      it 'Announces the new reading to graphite' do
+        expect(ReadingUpdateAnnouncer).to receive(:announce)
+        subject
       end
 
       context 'reading with same values for different meter' do
