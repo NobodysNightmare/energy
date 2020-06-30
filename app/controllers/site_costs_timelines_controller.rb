@@ -15,7 +15,7 @@ class SiteCostsTimelinesController < ApplicationController
     if params[:start].present?
       Date.iso8601(params[:start])
     else
-      (Date.current - 3.years).beginning_of_year
+      (Date.current - 6.months).beginning_of_month
     end
   end
 
