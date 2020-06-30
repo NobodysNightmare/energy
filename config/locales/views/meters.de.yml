@@ -6,6 +6,8 @@ de:
         generator: "Heute erzeugt"
         grid_export: "Heute ins Netz eingespeist"
         grid_import: "Heute vom Netz bezogen"
+        internal: "Heute verbraucht"
+      generator_fraction: "%{fraction}% aus eigener Erzeugung"
       latest_reading: "Zählerstand"
       refreshed_at: "Aktualisiert: %{time}"
       timeline_button: "Zeitverlauf"

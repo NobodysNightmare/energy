@@ -4,6 +4,7 @@ class Meter < ApplicationRecord
   belongs_to :site
 
   has_many :readings
+  has_many :energy_source_estimates, dependent: :delete_all
 
   enum meter_type: %i[generator grid_import grid_export internal]
 

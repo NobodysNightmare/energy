@@ -12,6 +12,7 @@ module Api
           next if exact_duplicate?(reading)
 
           reading.save!
+          update_estimates
           ReadingUpdateAnnouncer.announce(reading)
         end
       end
@@ -49,6 +50,12 @@ module Api
              time: reading.time,
              value: reading.value
            ).exists?
+    end
+
+    def update_estimates
+      return unless meter.internal?
+
+      EnergySourceEstimator.new(meter).append_estimates
     end
   end
 end

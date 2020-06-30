@@ -27,6 +27,7 @@ class ReadingsController < ApplicationController
   def create
     reading = Reading.create(reading_params)
     if reading.persisted?
+      update_estimates
       ReadingUpdateAnnouncer.announce(reading)
       flash[:success] = I18n.t('flashs.created_model',
                                model: Reading.model_name.human)
@@ -64,5 +65,11 @@ class ReadingsController < ApplicationController
 
   def reading_params
     params.require(:reading).permit(:meter_id, :time, :value)
+  end
+
+  def update_estimates
+    return unless meter.internal?
+
+    EnergySourceEstimator.new(meter).append_estimates
   end
 end

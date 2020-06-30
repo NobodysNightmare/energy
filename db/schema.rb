@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_202025) do
+ActiveRecord::Schema.define(version: 2020_06_28_114604) do
 
   create_table "api_keys", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2020_06_22_202025) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_api_keys_on_name", unique: true
     t.index ["secret"], name: "index_api_keys_on_secret", unique: true
+  end
+
+  create_table "energy_source_estimates", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "meter_id", null: false
+    t.datetime "time", null: false
+    t.integer "generated", null: false
+    t.integer "imported", null: false
+    t.index ["meter_id", "time"], name: "index_energy_source_estimates_on_meter_id_and_time", unique: true
+    t.index ["meter_id"], name: "index_energy_source_estimates_on_meter_id"
   end
 
   create_table "meters", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -71,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_202025) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
+  add_foreign_key "energy_source_estimates", "meters", on_delete: :cascade
   add_foreign_key "rates", "sites", on_delete: :cascade
   add_foreign_key "readings", "meters", on_delete: :cascade
 end

@@ -6,6 +6,8 @@ en:
         generator: "Generated today"
         grid_export: "Exported to grid today"
         grid_import: "Imported from grid today"
+        internal: "Used today"
+      generator_fraction: "%{fraction}% from own generation"
       latest_reading: "Latest reading"
       refreshed_at: "Updated at %{time}"
       timeline_button: "Timeline"

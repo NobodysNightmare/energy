@@ -13,6 +13,15 @@ class MeterOverviewPresenter < SimpleDelegator
     daily_statistics.latest_reading
   end
 
+  def generator_fraction
+    return nil unless internal?
+
+    estimate = energy_source_estimates.order(:time).last
+    return nil unless estimate
+
+    (estimate.generated_fraction * 100).round
+  end
+
   private
 
   def daily_statistics
