@@ -3,7 +3,7 @@
 class RatesController < ApplicationController
   def index
     @site = Site.find(params[:site_id])
-    @rates = @site.rates
+    @rates = @site.rates.order(:valid_from)
   end
 
   def new
