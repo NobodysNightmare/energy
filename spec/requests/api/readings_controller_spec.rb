@@ -3,23 +3,23 @@
 require 'rails_helper'
 
 RSpec.describe Api::ReadingsController do
-  describe 'POST readings' do
+  describe 'POST /api/meters/:serial/readings' do
     let(:meter) { FactoryBot.create(:meter) }
     let(:serial) { meter.serial }
     let(:time) { Time.now.change(usec: 0) }
     let(:value) { 1337 }
     let(:readings) { [{ time: time.iso8601, value: value }] }
+    let(:headers) { {} }
+    let(:api_key) { ApiKey.create!(name: 'Test', secret: 'very-secret').secret }
 
-    subject { process :create, method: :post, params: { meter_serial: serial, readings: readings } }
+    subject { post "/api/meters/#{serial}/readings", params: { readings: readings }, headers: headers }
 
     before do
       allow(ReadingUpdateAnnouncer).to receive(:announce).and_return(nil)
     end
 
     context 'with a valid API Key' do
-      before do
-        allow(controller).to receive(:check_api_key)
-      end
+      let(:headers) { { 'Authorization' => "Bearer #{api_key}" } }
 
       it 'responds with HTTP 201 Created' do
         subject
