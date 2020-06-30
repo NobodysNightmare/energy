@@ -4,6 +4,7 @@ class ApiController < ActionController::Base
   ClientError = Class.new(StandardError)
 
   before_action :check_api_key
+  skip_before_action :verify_authenticity_token
 
   rescue_from ClientError do |error|
     render_error(status: 400, message: error.message)
