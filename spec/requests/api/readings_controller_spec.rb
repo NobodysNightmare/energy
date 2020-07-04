@@ -79,7 +79,7 @@ RSpec.describe Api::ReadingsController do
           expect(response.status).to eql 400
         end
 
-        it 'creates a reading' do
+        it 'does not create a reading' do
           expect { subject }.not_to change { Reading.count }
         end
       end
@@ -99,6 +99,19 @@ RSpec.describe Api::ReadingsController do
         it 'creates no reading' do
           expect { subject }.not_to change { Reading.count }
         end
+      end
+    end
+
+    context 'without a valid API Key' do
+      let(:headers) { { 'Authorization' => 'Bearer invalid' } }
+
+      it 'responds with HTTP 403 Forbidden' do
+        subject
+        expect(response.status).to eql 403
+      end
+
+      it 'does not create a reading' do
+        expect { subject }.not_to change { Reading.count }
       end
     end
   end

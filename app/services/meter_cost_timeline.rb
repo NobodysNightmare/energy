@@ -2,7 +2,7 @@
 
 class MeterCostTimeline < Timeline
   def initialize(meter, from, to)
-    @statistics = MeterSourceStatistics.new(meter, from, to)
+    @statistics = MeterSourceStatistics.new(meter, from: from, to: to)
 
     @import_cost = RateCalculator.new(meter.site.rates, :import_rate, @statistics.imported)
     @generator_cost = RateCalculator.new(meter.site.rates, ->(r) { r.export_rate + r.self_consume_rate }, @statistics.generated)
