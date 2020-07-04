@@ -3,11 +3,12 @@
 class ReadingStatistics
   attr_reader :readings
 
-  def initialize(readings, from:, to:, current_duration: 5.minutes)
+  def initialize(readings, from:, to:, current_duration: 5.minutes, energy_accessor: :value)
     @readings = readings
     @from = from
     @to = to
     @current_duration = current_duration
+    @energy_accessor = energy_accessor
   end
 
   def current_power
@@ -44,6 +45,6 @@ class ReadingStatistics
   private
 
   def interpolator
-    @interpolator ||= ReadingInterpolator.new(readings, from: @from, to: @to)
+    @interpolator ||= Interpolator.new(readings, from: @from, to: @to, value_accessor: @energy_accessor)
   end
 end

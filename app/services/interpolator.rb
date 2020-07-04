@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class ReadingInterpolator
-  def initialize(readings, from:, to:)
+class Interpolator
+  def initialize(readings, from:, to:, value_accessor: :value)
     @unscoped_readings = readings
     @from = from
     @to = to
+    @value_accessor = value_accessor
   end
 
   def value_at(time)
@@ -37,14 +38,14 @@ class ReadingInterpolator
     finder = NeighbourFinder.new(readings)
     before, after = finder.readings_around(time)
 
-    estimate(before.value, rate(before, after), time - before.time)
+    estimate(value(before), rate(before, after), time - before.time)
   end
 
   def extrapolate(time)
     if time < first_reading.time
-      first_reading.value
+      value(first_reading)
     elsif time > last_reading.time
-      last_reading.value
+      value(last_reading)
     else
       raise ArgumentError, 'Time is not outside of readings range.'
     end
@@ -56,6 +57,10 @@ class ReadingInterpolator
 
   def rate(from, to)
     return 0 if from.time == to.time
-    (to.value - from.value) / (to.time - from.time)
+    (value(to) - value(from)) / (to.time - from.time)
+  end
+
+  def value(record)
+    record.public_send(@value_accessor)
   end
 end

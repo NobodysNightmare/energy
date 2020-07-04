@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReadingInterpolator do
+RSpec.describe Interpolator do
   let(:interpolator) do
     described_class.new(
       Reading,
