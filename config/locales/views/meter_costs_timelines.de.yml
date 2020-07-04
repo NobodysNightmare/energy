@@ -1,0 +1,8 @@
+de:
+  meter_costs_timelines:
+    index:
+      generator_cost: Erzeugungskosten
+      generator_fraction: Erzeugungsanteil
+      import_cost: Bezugskosten
+      period: Zeitraum
+      total_cost: Gesamtkosten

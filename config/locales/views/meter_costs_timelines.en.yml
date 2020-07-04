@@ -1,0 +1,8 @@
+en:
+  meter_costs_timelines:
+    index:
+      generator_cost: Generator Cost
+      generator_fraction: Generator Fraction
+      import_cost: Import Cost
+      period: Period
+      total_cost: Total Cost

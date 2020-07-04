@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     member do
       get 'timeline' => 'meters_timelines#index'
+      get 'costs/timeline' => 'meter_costs_timelines#index'
     end
   end
 

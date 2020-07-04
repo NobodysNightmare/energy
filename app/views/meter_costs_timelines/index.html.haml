@@ -1,0 +1,30 @@
+%h1= @meter.name
+
+%table.table
+  %thead
+    %th= t('.period')
+    %th= t('.import_cost')
+    %th= t('.generator_cost')
+    %th= t('.total_cost')
+    %th= t('.generator_fraction')
+  %tbody
+    - @timeline.rows.each do |row|
+      %tr
+        %td= row[:formatted_period]
+        %td
+          = format_currency row[:import_cost]
+          .small.text-muted= format_watt_hours row[:import_amount]
+        %td
+          = format_currency row[:generator_cost]
+          .small.text-muted= format_watt_hours row[:generator_amount]
+        %td
+          = format_currency(row[:generator_cost] + row[:import_cost])
+          .small.text-muted= format_watt_hours(row[:generator_amount] + row[:import_amount])
+
+        %td
+          - if (row[:generator_amount] + row[:import_amount]).positive?
+            = number_to_percentage(100 * row[:generator_amount] / (row[:generator_amount] + row[:import_amount]), precision: 0)
+          - else
+            \-
+
+= render 'timelines/time_chooser', start_date: start_date, end_date: end_date, period: period

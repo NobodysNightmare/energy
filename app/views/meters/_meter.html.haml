@@ -31,7 +31,11 @@
             = "(#{I18n.t('time_ago', time: time_ago_in_words(meter.latest_reading.time))})"
       .col-lg-6
         .float-right
-          %a.btn.btn-primary.btn-sm{href: timeline_meter_path(meter)}
-            = t('.timeline_button')
+          - if meter.energy_source_estimates.exists?
+            %a.btn.btn-primary.btn-sm{href: costs_timeline_meter_path(meter)}
+              = t('.timeline_button')
+          - else
+            %a.btn.btn-primary.btn-sm{href: timeline_meter_path(meter)}
+              = t('.timeline_button')
           %a.btn.btn-secondary.btn-sm{href: meter_readings_path(meter)}
             = I18n.t('buttons.readings')
