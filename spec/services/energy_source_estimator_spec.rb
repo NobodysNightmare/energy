@@ -4,11 +4,13 @@ require 'rails_helper'
 
 RSpec.describe EnergySourceEstimator do
   let(:meter) { FactoryBot.create :meter }
-  let(:site_stats) { instance_double(SiteStatistics, generators: generators, imports: imports) }
+  let(:site_stats) { instance_double(SiteStatistics, generators: generators, imports: imports, exports: exports) }
   let(:generators) { instance_double(ReadingStatistics, energy_between: generated) }
   let(:imports) { instance_double(ReadingStatistics, energy_between: imported) }
+  let(:exports) { instance_double(ReadingStatistics, energy_between: exported) }
   let(:generated) { 1000 }
   let(:imported) { 1000 }
+  let(:exported) { 0 }
 
   let(:latest) { 5.minutes.ago }
   let(:readings) do
@@ -107,8 +109,8 @@ RSpec.describe EnergySourceEstimator do
     end
 
     context 'when site consumes a mix of energies' do
-      let(:generated) { 1000 }
-      let(:imported) { 1000 }
+      let(:generated) { 2000 }
+      let(:imported) { 2000 }
 
       it 'estimates proportional amount from generation' do
         subject
@@ -131,6 +133,35 @@ RSpec.describe EnergySourceEstimator do
         it 'has the same total energy as the original reading' do
           subject
           expect(EnergySourceEstimate.last.total). to eq 5
+        end
+      end
+
+      context 'and when export is happening at the same time' do
+        let(:exported) { 1500 } # 2000 (gen) - 1500 (ex) = 500 (used gen)
+
+        it 'estimates generation proportional to usable generation' do
+          subject
+          expect(EnergySourceEstimate.last.generated). to eq 200
+        end
+
+        it 'estimates import proportional to usable generation' do
+          subject
+          expect(EnergySourceEstimate.last.imported). to eq 800
+        end
+      end
+
+      context 'and when export outweighs generation' do
+        # can mostly happen due to differences in meter resolution
+        let(:exported) { 3000 }
+
+        it 'estimates generation of 0%' do
+          subject
+          expect(EnergySourceEstimate.last.generated). to eq 0
+        end
+
+        it 'estimates import of 100%' do
+          subject
+          expect(EnergySourceEstimate.last.imported). to eq 1000
         end
       end
     end

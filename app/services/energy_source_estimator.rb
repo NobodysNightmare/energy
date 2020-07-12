@@ -49,11 +49,14 @@ class EnergySourceEstimator
   def generated_fraction(previous_reading, reading)
     total_generated = @site_stats.generators.energy_between(previous_reading.time, reading.time)
     total_imported = @site_stats.imports.energy_between(previous_reading.time, reading.time)
+    total_exported = @site_stats.exports.energy_between(previous_reading.time, reading.time)
 
-    # This might happen if no energy is reported for the site due to low resolution
-    # of certain meters
-    return 0 if (total_generated + total_imported).zero?
+    net_generated = total_generated - total_exported
+    total_energy = net_generated + total_imported
 
-    Rational(total_generated, total_generated + total_imported)
+    # Either might happen due to low resolution of certain meters
+    return 0 if net_generated.negative? || total_energy.zero?
+
+    Rational(net_generated, total_energy)
   end
 end
