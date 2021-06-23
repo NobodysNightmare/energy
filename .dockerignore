@@ -3,6 +3,7 @@
 coverage/
 log/*
 !log/.keep
+node_modules/
 tmp/*
 tmp/pids/*
 !tmp/pids/.keep
