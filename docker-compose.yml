@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+    development:
+        build: .
+        env_file:
+            - env.development
+        volumes:
+            - type: bind
+              source: .
+              target: /app
+        depends_on:
+            - mariadb
+        ports:
+            - "3000:3000"
+
+    test:
+        build: .
+        env_file:
+            - env.test
+        volumes:
+            - type: bind
+              source: .
+              target: /app
+        depends_on:
+            - mariadb
+        command: ["rspec"]
+
+    mariadb:
+        image: mariadb
+        environment:
+            MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
