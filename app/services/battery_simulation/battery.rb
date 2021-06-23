@@ -1,12 +1,13 @@
 class BatterySimulation
   class Battery
     attr_accessor :current_charge
-    attr_reader :capacity, :charge_power_limit, :discharge_power_limit
+    attr_reader :capacity, :charge_power_limit, :discharge_power_limit, :charge_efficiency
 
-    def initialize(capacity, charge_power_limit, discharge_power_limit)
+    def initialize(capacity, charge_power_limit, discharge_power_limit, charge_efficiency)
       @capacity = capacity
       @charge_power_limit = charge_power_limit
       @discharge_power_limit = discharge_power_limit
+      @charge_efficiency = charge_efficiency
       @current_charge = 0
     end
 
@@ -18,14 +19,15 @@ class BatterySimulation
       energy *= ratio
 
       acceptable_energy = capacity - current_charge
-      energy = [energy, acceptable_energy].min
-      self.current_charge += energy
-      energy
+      available_energy = energy * charge_efficiency
+      charged_energy = [available_energy, acceptable_energy].min
+      self.current_charge += charged_energy
+      [charged_energy, charged_energy / charge_efficiency]
     end
 
     def discharge(energy, duration:)
       return 0 if energy.zero?
-      
+
       output_power = energy * power_factor(duration)
       ratio = [charge_power_limit, output_power].min / output_power
       energy *= ratio

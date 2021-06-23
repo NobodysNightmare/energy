@@ -12,10 +12,10 @@ class BatterySimulation
       import = @statistics.imports.energy_between(frame_start, frame_end)
 
       discharged = @battery.discharge(import, duration: frame_duration)
-      charged = @battery.charge(export, duration: frame_duration)
+      charged, consumed = @battery.charge(export, duration: frame_duration)
 
       yield time: frame_end,
-            exported: export - charged,
+            exported: export - consumed,
             imported: import - discharged,
             discharged: discharged,
             charged: charged,

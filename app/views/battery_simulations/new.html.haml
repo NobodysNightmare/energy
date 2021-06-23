@@ -43,5 +43,12 @@
           .input-group-append
             .input-group-text Wh
 
+      .form-group
+        = f.label :battery_charge_efficiency
+        .input-group
+          = f.text_field :battery_charge_efficiency, class: 'form-control', type: 'number', value: 100
+          .input-group-append
+            .input-group-text %
+
       %button.btn.btn-primary
         = t('.submit_button')

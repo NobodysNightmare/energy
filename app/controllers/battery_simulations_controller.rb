@@ -21,7 +21,8 @@ class BatterySimulationsController < ApplicationController
     BatterySimulation::Battery.new(
       simulation_params.fetch(:battery_capacity).to_i,
       simulation_params.fetch(:battery_charge_power).to_i,
-      simulation_params.fetch(:battery_discharge_power).to_i
+      simulation_params.fetch(:battery_discharge_power).to_i,
+      simulation_params.fetch(:battery_charge_efficiency).to_i / 100.0
     )
   end
 
@@ -44,6 +45,6 @@ class BatterySimulationsController < ApplicationController
   def simulation_params
     params.require(:simulation)
           .permit(:site_id, :start, :end, :step_size, :battery_capacity,
-                  :battery_charge_power, :battery_discharge_power)
+                  :battery_charge_power, :battery_discharge_power, :battery_charge_efficiency)
   end
 end

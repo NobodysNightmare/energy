@@ -6,8 +6,9 @@ RSpec.describe BatterySimulation::Battery do
   let(:capacity) { 3_000 }
   let(:charge_power) { 1_000 }
   let(:discharge_power) { 1_000 }
+  let(:charge_efficiency) { 0.8 }
 
-  subject(:battery) { described_class.new(capacity, charge_power, discharge_power) }
+  subject(:battery) { described_class.new(capacity, charge_power, discharge_power, charge_efficiency) }
 
   it 'starts at a charge of 0 Wh' do
     expect(battery.current_charge).to be_zero
@@ -22,14 +23,19 @@ RSpec.describe BatterySimulation::Battery do
       battery.current_charge = initial_charge
     end
 
-    it 'adds the desired energy to the current charge' do
+    it 'adds the desired energy to the current charge, considering efficiency' do
       battery.charge(energy, duration: duration)
-      expect(battery.current_charge).to eq 600
+      expect(battery.current_charge).to eq 580
     end
 
     it 'returns the amount of charged energy' do
-      charged = battery.charge(energy, duration: duration)
-      expect(charged).to eq 100
+      charged, _ = battery.charge(energy, duration: duration)
+      expect(charged).to eq 80
+    end
+
+    it 'returns the amount of consumed energy' do
+      _, consumed = battery.charge(energy, duration: duration)
+      expect(consumed).to eq 100
     end
 
     context 'when trying to overcharge' do
@@ -41,8 +47,13 @@ RSpec.describe BatterySimulation::Battery do
       end
 
       it 'returns the amount of charged energy' do
-        charged = battery.charge(energy, duration: duration)
+        charged, _ = battery.charge(energy, duration: duration)
         expect(charged).to eq 2_500
+      end
+
+      it 'returns the amount of consumed energy' do
+        _, consumed = battery.charge(energy, duration: duration)
+        expect(consumed).to eq 3_125
       end
     end
 
@@ -52,12 +63,17 @@ RSpec.describe BatterySimulation::Battery do
 
       it 'caps the charged energy according to power constraints' do
         battery.charge(energy, duration: duration)
-        expect(battery.current_charge).to eq (initial_charge + charge_power)
+        expect(battery.current_charge).to eq (initial_charge + charge_power * charge_efficiency)
       end
 
       it 'returns the amount of charged energy' do
-        charged = battery.charge(energy, duration: duration)
-        expect(charged).to eq charge_power
+        charged, _ = battery.charge(energy, duration: duration)
+        expect(charged).to eq charge_power * charge_efficiency
+      end
+
+      it 'returns the amount of consumed energy' do
+        _, consumed = battery.charge(energy, duration: duration)
+        expect(consumed).to eq charge_power
       end
     end
   end
