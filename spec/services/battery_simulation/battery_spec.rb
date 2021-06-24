@@ -76,6 +76,25 @@ RSpec.describe BatterySimulation::Battery do
         expect(consumed).to eq charge_power
       end
     end
+
+    context 'when charging nothing' do
+      let(:energy) { 0 }
+
+      it 'adds nothing to the current charge' do
+        battery.charge(energy, duration: duration)
+        expect(battery.current_charge).to eq 500
+      end
+
+      it 'returns the amount of charged energy' do
+        charged, _ = battery.charge(energy, duration: duration)
+        expect(charged).to eq 0
+      end
+
+      it 'returns the amount of consumed energy' do
+        _, consumed = battery.charge(energy, duration: duration)
+        expect(consumed).to eq 0
+      end
+    end
   end
 
   describe '#discharge' do

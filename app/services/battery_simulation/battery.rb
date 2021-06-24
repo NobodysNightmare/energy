@@ -12,7 +12,7 @@ class BatterySimulation
     end
 
     def charge(energy, duration:)
-      return 0 if energy.zero?
+      return [0, 0] if energy.zero?
 
       input_power = energy * power_factor(duration)
       ratio = [charge_power_limit, input_power].min / input_power
