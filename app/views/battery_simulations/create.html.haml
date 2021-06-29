@@ -1,24 +1,45 @@
 %h1= I18n.t('titles.battery_simulation')
 
-%table.table
-  %thead
-    %th= t('.period')
-    %th= t('.imported')
-    %th= t('.discharged')
-    %th= t('.exported')
-    %th= t('.charged')
-  %tbody
-    - @result.frames.each do |frame|
+.card
+  %table.table
+    %thead
+      %th= t('.period')
+      %th= t('.imported')
+      %th= t('.discharged')
+      %th= t('.exported')
+      %th= t('.charged')
+    %tbody
+      - @simulation_result.frames.each do |frame|
+        %tr
+          %td= frame.formatted_date
+          %td= format_watt_hours frame.imported
+          %td= format_watt_hours frame.discharged
+          %td= format_watt_hours frame.exported
+          %td= format_watt_hours frame.charged
+    %tfoot
+      %tr.font-weight-bold
+        %td= t('.total')
+        %td= format_watt_hours @simulation_result.summary.imported
+        %td= format_watt_hours @simulation_result.summary.discharged
+        %td= format_watt_hours @simulation_result.summary.exported
+        %td= format_watt_hours @simulation_result.summary.charged
+
+.card.mt-4
+  %table.table
+    %thead
       %tr
-        %td= frame.formatted_date
-        %td= format_watt_hours frame.imported
-        %td= format_watt_hours frame.discharged
-        %td= format_watt_hours frame.exported
-        %td= format_watt_hours frame.charged
-  %tfoot
-    %tr.font-weight-bold
-      %td= t('.total')
-      %td= format_watt_hours @result.summary.imported
-      %td= format_watt_hours @result.summary.discharged
-      %td= format_watt_hours @result.summary.exported
-      %td= format_watt_hours @result.summary.charged
+        %th
+        %th= t('.without_battery')
+        %th= t('.with_battery')
+        %th= t('.difference')
+    %tbody
+      %tr
+        %th= t('.imported')
+        %td= format_watt_hours @site_statistics.imports.total_energy
+        %td= format_watt_hours @simulation_result.summary.imported
+        %td= format_watt_hours(@simulation_result.summary.imported - @site_statistics.imports.total_energy)
+      %tr
+        %th= t('.exported')
+        %td= format_watt_hours @site_statistics.exports.total_energy
+        %td= format_watt_hours @simulation_result.summary.exported
+        %td= format_watt_hours(@simulation_result.summary.exported - @site_statistics.exports.total_energy)

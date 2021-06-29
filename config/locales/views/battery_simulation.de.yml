@@ -2,10 +2,13 @@ de:
   battery_simulations:
     create:
       charged: In Batterie geladen
+      difference: "Unterschied"
       discharged: Aus Batterie entladen
       exported: Eingespeist
       imported: Bezogen
       period: Zeitraum
       total: Summe
+      with_battery: "Mit Batterie"
+      without_battery: "Ohne Batterie"
     new:
       submit_button: Simulieren

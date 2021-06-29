@@ -8,7 +8,8 @@ class BatterySimulationsController < ApplicationController
       collector.update(**options)
     end
 
-    @result = collector.result
+    @simulation_result = collector.result
+    @site_statistics = SiteStatistics.new(site, start_date, end_date)
   end
 
   private
@@ -27,7 +28,7 @@ class BatterySimulationsController < ApplicationController
   end
 
   def site
-    Site.find(simulation_params.fetch(:site_id))
+    @site ||= Site.find(simulation_params.fetch(:site_id))
   end
 
   def start_date
