@@ -27,7 +27,7 @@ module UnitHelper
   private
 
   def prefix(value)
-    if value >= 1000
+    if value.abs >= 1000
       [(value / 1000.0).round(1), 'k']
     else
       [value.round(1), '']
