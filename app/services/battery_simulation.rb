@@ -1,7 +1,9 @@
 class BatterySimulation
+  attr_reader :statistics
+
   def initialize(battery, site, time_range, step_size)
     @battery = battery
-    @statistics = SiteStatistics.new(site, time_range.first.to_time, time_range.last.to_time)
+    @statistics = SiteStatistics.new(site, time_range.first.beginning_of_day, time_range.last.end_of_day)
     @step_size = step_size
   end
 

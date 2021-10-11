@@ -9,13 +9,13 @@ class BatterySimulationsController < ApplicationController
     end
 
     @simulation_result = collector.result
-    @site_statistics = SiteStatistics.new(site, start_date, end_date)
+    @site_statistics = simulation.statistics
   end
 
   private
 
   def simulation
-    BatterySimulation.new(battery, site, start_date..end_date, step_size)
+    @simulation ||= BatterySimulation.new(battery, site, start_date..end_date, step_size)
   end
 
   def battery
