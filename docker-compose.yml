@@ -29,4 +29,4 @@ services:
     mariadb:
         image: mariadb
         environment:
-            MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "true"
