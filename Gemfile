@@ -6,7 +6,7 @@ gem 'coffee-rails', '~> 5.0'
 gem 'haml-rails'
 gem 'kaminari'
 gem 'mysql2'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.6'
 gem 'rails', '~> 6.0.0'
 gem 'sass-rails', '~> 5.0'
 gem 'therubyracer', platforms: :ruby
