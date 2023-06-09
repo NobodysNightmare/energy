@@ -7,3 +7,6 @@ en:
         date: "Date"
         submit: "Find"
         title: "Find readings"
+      raw_value_hint: "Value read from meter"
+    new:
+      reset_hint: "Meter has been reset in the past or didn't start at 0. Please enter value as shown by the meter. Correction happens automatically."

@@ -29,6 +29,22 @@
           .input-group-append
             .input-group-text min
 
+      .form-group
+        = f.label :reset_from
+        .input-group
+          = f.text_field :reset_from, class: 'form-control', type: 'number'
+          .input-group-append
+            .input-group-text Wh
+        %small.form-text.text-muted= t('.reset_from_hint')
+
+      .form-group
+        = f.label :reset_to
+        .input-group
+          = f.text_field :reset_to, class: 'form-control', type: 'number'
+          .input-group-append
+            .input-group-text Wh
+        %small.form-text.text-muted= t('.reset_to_hint')
+
       .form-check.mb-4
         = f.check_box :active, class: 'form-check-input'
         = f.label :active, class: 'form-check-label'

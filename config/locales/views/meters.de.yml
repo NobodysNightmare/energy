@@ -1,5 +1,8 @@
 de:
   meters:
+    edit:
+      reset_from_hint: "Bei Zählern mit zurücksetzenden Werten sollte dies der höchste gemessene Gesamtwert vor dem letzten Zurücksetzen sein."
+      reset_to_hint: "Bei Zählern mit zurücksetzenden Werten sollte dies der erste vom Zähler gelesene Wert des aktuellen Durchlaufs sein."
     meter:
       current_power: "Aktuelle Leistung"
       daily_energy:

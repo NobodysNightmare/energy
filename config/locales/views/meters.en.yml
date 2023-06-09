@@ -1,5 +1,8 @@
 en:
   meters:
+    edit:
+      reset_from_hint: "For meters with resetting values this should be the highest total value before the last reset."
+      reset_to_hint: "For meters with resetting values this should be the starting value of the current iteration."
     meter:
       current_power: "Current power"
       daily_energy:

@@ -25,15 +25,15 @@ class ReadingsController < ApplicationController
   end
 
   def create
-    reading = Reading.create(reading_params)
-    if reading.persisted?
-      update_estimates
-      ReadingUpdateAnnouncer.announce(reading)
+    add_srv = AddReadings.new(meter)
+    valid, reading = add_srv.add(reading_params)
+    if valid
       flash[:success] = I18n.t('flashs.created_model',
                                model: Reading.model_name.human)
     else
       flash_errors(reading.errors)
     end
+
     redirect_to action: :index
   end
 
@@ -65,11 +65,5 @@ class ReadingsController < ApplicationController
 
   def reading_params
     params.require(:reading).permit(:meter_id, :time, :value)
-  end
-
-  def update_estimates
-    return unless meter.internal?
-
-    EnergySourceEstimator.new(meter).append_estimates
   end
 end

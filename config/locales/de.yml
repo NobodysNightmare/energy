@@ -44,6 +44,8 @@ de:
       meter:
         active: Aktiv
         name: Name
+        reset_from: Zurückgesetzt von
+        reset_to: Zurückgesetzt zu
         serial: Seriennummer
       rate:
         export_rate: Einspeisevergütung

@@ -3,23 +3,29 @@
 module Api
   class ReadingsController < ApiController
     def create
+      add_srv = AddReadings.new(meter)
+      error = nil
+
       ActiveRecord::Base.transaction do
         readings.each do |reading_hash|
-          reading = build_reading(reading_hash)
+          valid, reading = add_srv.add(reading_hash)
+
+          next if valid
 
           # We already have it, but a validation error
           # is not neccessary (since everything is equal)
           next if exact_duplicate?(reading)
 
-          reading.save!
-          update_estimates
-          ReadingUpdateAnnouncer.announce(reading)
+          error = reading.errors.full_messages.to_sentence
+          raise ActiveRecord::Rollback
         end
       end
 
-      render json: { message: 'Readings were created' }, status: :created
-    rescue ActiveRecord::RecordInvalid => e
-      render json: { error: e.message }, status: :bad_request
+      if error
+        render json: { error: }, status: :bad_request
+      else
+        render json: { message: 'Readings were created' }, status: :created
+      end
     end
 
     private

@@ -54,7 +54,8 @@ RSpec.describe Api::ReadingsController do
         before do
           Reading.create!(meter: FactoryBot.create(:meter),
                           time: time,
-                          value: value)
+                          value: value,
+                          raw_value: value)
         end
 
         it 'responds with HTTP 201 Created' do
@@ -71,7 +72,8 @@ RSpec.describe Api::ReadingsController do
         before do
           Reading.create!(meter: meter,
                           time: time,
-                          value: value * 2)
+                          value: value * 2,
+                          raw_value: value * 2)
         end
 
         it 'responds with HTTP 400 Bad Request' do
@@ -88,7 +90,8 @@ RSpec.describe Api::ReadingsController do
         before do
           Reading.create!(meter: meter,
                           time: time,
-                          value: value)
+                          value: value,
+                          raw_value: value)
         end
 
         it 'responds with HTTP 201 Created' do

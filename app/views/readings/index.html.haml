@@ -43,6 +43,9 @@
   - @readings.each do |reading|
     %tr
       %td= I18n.l(reading.time, format: :short)
-      %td= format_watt_hours(reading.value)
+      %td
+        = format_watt_hours(reading.value)
+        - if (reading.value != reading.raw_value)
+          %small.text-muted{title: t('.raw_value_hint')}= format_watt_hours(reading.raw_value)
 
 = paginate(@readings)

@@ -7,3 +7,6 @@ de:
         date: "Datum"
         submit: "Suchen"
         title: "Zählerstand finden"
+      raw_value_hint: "Wert laut Zähler"
+    new:
+      reset_hint: "Zähler wurde in der Vergangenheit zurückgesetzt oder startete nicht bei 0. Bitte Wert so eingeben, wie er vom Zähler angezeigt wird. Korrektur erfolgt automatisch."

@@ -52,7 +52,7 @@ class MetersController < ApplicationController
   private
 
   def meter_params
-    result = params.require(:meter).permit(:name, :serial, :site_id, :meter_type, :current_duration, :active)
+    result = params.require(:meter).permit(%i[name serial site_id meter_type current_duration reset_from reset_to active])
     convert_duration!(result)
     result
   end

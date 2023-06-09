@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2020_06_28_114604) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_133702) do
   create_table "api_keys", id: :integer, charset: "utf8mb3", collation: "utf8mb3_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "secret", null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema[7.0].define(version: 2020_06_28_114604) do
     t.integer "meter_type", default: 0, null: false
     t.integer "current_duration", default: 300, null: false
     t.boolean "active", default: true, null: false
+    t.integer "reset_from", default: 0, null: false
+    t.integer "reset_to", default: 0, null: false
     t.index ["serial"], name: "index_meters_on_serial", unique: true
     t.index ["site_id"], name: "index_meters_on_site_id"
   end
@@ -57,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2020_06_28_114604) do
     t.integer "meter_id", null: false
     t.datetime "time", precision: nil, null: false
     t.integer "value", null: false
+    t.integer "raw_value", null: false
     t.index ["meter_id", "time"], name: "index_readings_on_meter_id_and_time", unique: true
     t.index ["meter_id"], name: "index_readings_on_meter_id"
     t.index ["time"], name: "index_readings_on_time"

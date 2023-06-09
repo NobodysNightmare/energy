@@ -15,6 +15,10 @@
     - else
       = I18n.t('titles.edit_model', model: Reading.model_name.human)
   .card-body
+    - if @reading.meter.reset_from.positive? || @reading.meter.reset_from.positive?
+      .alert.alert-info
+        = t('.reset_hint')
+
     = form_for [@reading.meter, @reading] do |f|
       = f.hidden_field :meter_id
 
