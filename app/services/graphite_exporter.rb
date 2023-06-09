@@ -2,7 +2,16 @@
 
 class GraphiteExporter
   class << self
-    attr_accessor :default
+    attr_writer :default
+
+    def default
+      return @default if defined? @default
+
+      hostname = ENV['GRAPHITE_HOST']
+      port = ENV['GRAPHITE_PORT']
+
+      @default = hostname && port && new(hostname, port.to_i)
+    end
   end
 
   def initialize(hostname, port = 2003)
