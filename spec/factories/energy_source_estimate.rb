@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :energy_source_estimate do
-    time Time.now
+    time { Time.now }
     sequence(:generated) { |n| 1200 * n }
     sequence(:imported) { |n| 800 * n }
     meter

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :reading do
-    time Time.now
+    time { Time.now }
     sequence(:value) { |n| 1000 * n }
     meter
   end

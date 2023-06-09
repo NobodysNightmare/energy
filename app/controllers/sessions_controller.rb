@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     auth_hash = request.env['omniauth.auth']
     session[:user_id] = auth_hash[:uid]
     user = User.find_or_initialize_by(user_id: session[:user_id])
-    user.update_attributes!(
+    user.update!(
       email: auth_hash.dig(:info, :email),
       name: auth_hash.dig(:info, :name)
     )

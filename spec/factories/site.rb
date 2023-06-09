@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :site do
-    name { "#{Faker::Book.genre} #{Faker::Pokemon.name} #{rand(10_000)}" }
+    name { "#{Faker::Book.genre} #{Faker::Games::Pokemon.name} #{rand(10_000)}" }
   end
 end

@@ -13,12 +13,12 @@ namespace :users do
   desc 'Activates the given user (by user_id)'
   task :activate, [:user_id] => :environment do |_, args|
     User.find_by(user_id: args[:user_id])
-        .update_attributes!(active: true)
+        .update!(active: true)
   end
 
   desc 'Activates the given user (by user_id)'
   task :deactivate, [:user_id] => :environment do |_, args|
     User.find_by(user_id: args[:user_id])
-        .update_attributes!(active: false)
+        .update!(active: false)
   end
 end
