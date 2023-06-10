@@ -13,7 +13,8 @@ RSpec.describe MeterResetDetector do
   }
 
   describe 'mapping tests' do
-    subject { described_class.new(meter).fix_resets; actual_values }
+    # using extra small batch size to test custom batching implementation
+    subject { described_class.new(meter, batch_size: 2).fix_resets; actual_values }
     let(:meter) { FactoryBot.create(:meter) }
 
     let(:actual_values) { meter.readings.order(time: :asc).pluck(:value) }
@@ -22,6 +23,16 @@ RSpec.describe MeterResetDetector do
       context "when raw values are #{raw_values.inspect}" do
         before do
           raw_values.each.with_index do |raw, i|
+            Reading.create!(meter:, time: i.minutes.from_now, value: raw, raw_value: raw)
+          end
+        end
+
+        it { is_expected.to eq(expected_values) }
+      end
+
+      context "when raw values are #{raw_values.inspect}, but stored out-of-order" do
+        before do
+          raw_values.each_with_index.to_a.shuffle.each do |raw, i|
             Reading.create!(meter:, time: i.minutes.from_now, value: raw, raw_value: raw)
           end
         end

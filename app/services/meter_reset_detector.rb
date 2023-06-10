@@ -3,14 +3,15 @@
 class MeterResetDetector
   attr_reader :meter
 
-  def initialize(meter)
+  def initialize(meter, batch_size: 1000)
     @meter = meter
+    @batch_size = batch_size
   end
 
   def each_reset
     last_reading = all_readings.first
 
-    all_readings.find_each do |reading|
+    each_reading_in_batches do |reading|
       yield reading, last_reading if reading.raw_value < last_reading.raw_value
       last_reading = reading
     end
@@ -28,13 +29,23 @@ class MeterResetDetector
     end
 
     meter.update!(reset_from:, reset_to:)
-
-    # TODO: update energy estimates?
+    EnergySourceEstimator.new(meter).reestimate_all if meter.internal?
   end
 
   private
 
   def all_readings
     meter.readings.order(time: :asc)
+  end
+
+  def each_reading_in_batches(&block)
+    offset = 0
+    loop do
+      batch = all_readings.offset(offset).limit(@batch_size).to_a
+      break if batch.empty?
+
+      batch.each(&block)
+      offset += @batch_size
+    end
   end
 end
