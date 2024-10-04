@@ -49,9 +49,13 @@ while time < now
 
     generation = shuffle_generation(time)
     consumption = shuffle_consumption(time)
-    generator.readings.create!(time: time, value: generator_value += generation)
-    export.readings.create!(time: time, value: export_value += [generation - consumption, 0].max)
-    import.readings.create!(time: time, value: import_value += [consumption - generation, 0].max)
+    generator_value += generation
+    export_value += [generation - consumption, 0].max
+    import_value += [consumption - generation, 0].max
+
+    generator.readings.create!(time: time, value: generator_value, raw_value: generator_value)
+    export.readings.create!(time: time, value: export_value, raw_value: export_value)
+    import.readings.create!(time: time, value: import_value, raw_value: import_value)
 
     time += 5.minutes
 end
