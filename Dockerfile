@@ -5,7 +5,7 @@ ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["puma", "--config", "puma.rb", "-p", "3000"]
 ENV RAILS_LOG_TO_STDOUT=true RAILS_SERVE_STATIC_FILES=true
 
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs && \
     npm install --global yarn
 
