@@ -6,7 +6,7 @@ gem 'haml-rails'
 gem 'kaminari'
 gem 'mysql2'
 gem 'puma', '~> 6.0'
-gem 'rails', '~> 7.0.0'
+gem 'rails', '~> 7.2.0'
 gem 'sassc-rails', '~> 2.0'
 gem 'mini_racer'
 gem 'uglifier', '>= 1.3.0'
@@ -29,8 +29,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
-  gem 'rspec-rails', '~> 3.5', require: false
+  gem 'listen', '~> 3.5'
+  gem 'rspec-rails', '~> 7.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
