@@ -29,7 +29,7 @@ class BatterySimulation
       return 0 if energy.zero?
 
       output_power = energy * power_factor(duration)
-      ratio = [charge_power_limit, output_power].min / output_power
+      ratio = [discharge_power_limit, output_power].min / output_power
       energy *= ratio
 
       energy = [energy, current_charge].min
